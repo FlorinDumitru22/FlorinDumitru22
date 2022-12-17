@@ -1,7 +1,7 @@
-- 👋 Hi, I’m @FlorinDumitru22
-- 👀 I’m interested in Frontend development, Fitness and how to smile more
-- 🌱 I’m currently learning ZTM Academy to get hired
-- 💞️ I’m looking to collaborate on WebDev, HTML5, CSS3, JavaScript, react, Node.js
+- 👋 Hi, I’m Florin, London based web developer
+- 👀 I’m interested in Frontend development, Paintball and how to think creative/critical 
+- 🌱 I’m currently study and deep my knowledge on HTML5, CSS3, JavaScript, react, Node.js
+- 💞️ I’m looking to collaborate with Recruiting professionals, graduate/junior developers/Software Leads/ mid or senior developers.
 - 📫 How to reach me ...
 
 <!---
