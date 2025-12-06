@@ -295,6 +295,9 @@ const translations = {
         'funding.payment.note': 'All payments are secure and encrypted. You\'ll receive a confirmation email with your supporter benefits.',
         'gallery.title': 'Project Gallery',
         'gallery.subtitle': 'Timber frame design and off-grid features',
+        'notifications.tier_selected': 'Added {tierName} (€{amount}) to your selection.',
+        'notifications.cart_cleared': 'Selection cleared.',
+        'notifications.select_tier': 'Please select a support tier first.',
         'features.title': 'Project Features',
         'features.transparent': '100% Transparent',
         'features.transparent_desc': 'Every euro tracked and shared publicly with regular updates',
@@ -403,6 +406,9 @@ const translations = {
         'funding.payment.note': 'Toate plățile sunt sigure și criptate. Vei primi un email de confirmare cu beneficiile tale de susținător.',
         'gallery.title': 'Galerie Proiect',
         'gallery.subtitle': 'Design structură din lemn și caracteristici off-grid',
+        'notifications.tier_selected': 'Adăugat {tierName} (€{amount}) la selecția ta.',
+        'notifications.cart_cleared': 'Selecție ștearsă.',
+        'notifications.select_tier': 'Te rugăm să selectezi mai întâi un nivel de susținere.',
         'features.title': 'Caracteristici Proiect',
         'features.transparent': '100% Transparent',
         'features.transparent_desc': 'Fiecare euro urmărit și partajat public cu actualizări regulate',
@@ -469,6 +475,19 @@ function switchLanguage(lang) {
     });
 }
 
+// Helper function to get translated text
+function getTranslation(key, replacements = {}) {
+    const lang = localStorage.getItem('language') || 'en';
+    let text = translations[lang] && translations[lang][key] ? translations[lang][key] : key;
+    
+    // Replace placeholders like {tierName}, {amount}
+    Object.keys(replacements).forEach(placeholder => {
+        text = text.replace(`{${placeholder}}`, replacements[placeholder]);
+    });
+    
+    return text;
+}
+
 // Payment Integration (Stripe)
 let selectedTierAmount = 0;
 let selectedTierName = '';
@@ -489,7 +508,8 @@ function selectTier(amount, tierName) {
     // Scroll to cart
     document.getElementById('cartSection').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     
-    showNotification(`Added ${tierName} (€${amount}) to your selection.`);
+    const message = getTranslation('notifications.tier_selected', { tierName, amount });
+    showNotification(message);
 }
 
 function clearCart() {
@@ -497,12 +517,15 @@ function clearCart() {
     selectedTierName = '';
     document.getElementById('cartSection').style.display = 'none';
     document.getElementById('paymentSection').style.display = 'none';
-    showNotification('Selection cleared.');
+    
+    const message = getTranslation('notifications.cart_cleared');
+    showNotification(message);
 }
 
 function proceedToCheckout() {
     if (selectedTierAmount === 0) {
-        showNotification('Please select a support tier first.');
+        const message = getTranslation('notifications.select_tier');
+        showNotification(message);
         return;
     }
     
@@ -515,7 +538,8 @@ function proceedToCheckout() {
 
 function initiateStripePayment() {
     if (selectedTierAmount === 0) {
-        showNotification('Please select a support tier first.');
+        const message = getTranslation('notifications.select_tier');
+        showNotification(message);
         return;
     }
     
