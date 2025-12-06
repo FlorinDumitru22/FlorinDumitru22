@@ -43,36 +43,36 @@
     <section id="home" class="hero">
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            <h1 class="hero-title">Crowdsourced Off-Grid Timber Frame House</h1>
-            <p class="hero-subtitle">Join us in building a sustainable off-grid home in the Carpathian Mountains</p>
-            <a href="#funding" class="cta-button">Support Our Project</a>
+            <h1 class="hero-title" data-translate="hero.title">Crowdsourced Off-Grid Timber Frame House</h1>
+            <p class="hero-subtitle" data-translate="hero.subtitle">Join us in building a sustainable off-grid home in the Carpathian Mountains</p>
+            <a href="#funding" class="cta-button" data-translate="hero.cta">Support Our Project</a>
         </div>
     </section>
 
     <!-- About Section -->
     <section id="about" class="about">
         <div class="container">
-            <h2 class="section-title">About Our Project</h2>
+            <h2 class="section-title" data-translate="about.title">About Our Project</h2>
             <div class="about-grid">
                 <div class="about-card">
                     <div class="icon">🌲</div>
-                    <h3>Timber Frame Construction</h3>
-                    <p>Traditional timber frame building using locally sourced wood from sustainable Carpathian forests. A timeless construction method that's both beautiful and durable.</p>
+                    <h3 data-translate="about.timber.title">Timber Frame Construction</h3>
+                    <p data-translate="about.timber.desc">Traditional timber frame building using locally sourced wood from sustainable Carpathian forests. A timeless construction method that's both beautiful and durable.</p>
                 </div>
                 <div class="about-card">
                     <div class="icon">⚡</div>
-                    <h3>Off-Grid Living</h3>
-                    <p>Completely self-sufficient with solar panels, rainwater harvesting, and natural heating systems. Living in harmony with nature.</p>
+                    <h3 data-translate="about.offgrid.title">Off-Grid Living</h3>
+                    <p data-translate="about.offgrid.desc">Completely self-sufficient with solar panels, rainwater harvesting, and natural heating systems. Living in harmony with nature.</p>
                 </div>
                 <div class="about-card">
                     <div class="icon">🤝</div>
-                    <h3>Community Crowdsourced</h3>
-                    <p>Built by and for the community. Your contribution helps create a demonstration of sustainable living and inspires others to follow.</p>
+                    <h3 data-translate="about.community.title">Community Crowdsourced</h3>
+                    <p data-translate="about.community.desc">Built by and for the community. Your contribution helps create a demonstration of sustainable living and inspires others to follow.</p>
                 </div>
                 <div class="about-card">
                     <div class="icon">🌍</div>
-                    <h3>Eco-Friendly Design</h3>
-                    <p>Minimal environmental impact using natural materials, passive solar design, and renewable energy. A blueprint for sustainable mountain living.</p>
+                    <h3 data-translate="about.eco.title">Eco-Friendly Design</h3>
+                    <p data-translate="about.eco.desc">Minimal environmental impact using natural materials, passive solar design, and renewable energy. A blueprint for sustainable mountain living.</p>
                 </div>
             </div>
         </div>
@@ -81,24 +81,24 @@
     <!-- Funding Progress Section -->
     <section id="funding" class="calculator-section">
         <div class="container">
-            <h2 class="section-title">Crowdfunding Progress</h2>
-            <p class="section-subtitle">Help us build this sustainable off-grid timber frame home</p>
+            <h2 class="section-title" data-translate="funding.title">Crowdfunding Progress</h2>
+            <p class="section-subtitle" data-translate="funding.subtitle">Help us build this sustainable off-grid timber frame home</p>
             
             <div class="funding-stats">
                 <div class="stat-card">
-                    <h3>Total Goal</h3>
+                    <h3 data-translate="funding.stats.goal">Total Goal</h3>
                     <p class="stat-value">€ 85,000</p>
                 </div>
                 <div class="stat-card">
-                    <h3>Raised So Far</h3>
+                    <h3 data-translate="funding.stats.raised">Raised So Far</h3>
                     <p class="stat-value" id="raisedAmount">€ 32,450</p>
                 </div>
                 <div class="stat-card">
-                    <h3>Supporters</h3>
+                    <h3 data-translate="funding.stats.supporters">Supporters</h3>
                     <p class="stat-value" id="supporterCount">147</p>
                 </div>
                 <div class="stat-card">
-                    <h3>Days Remaining</h3>
+                    <h3 data-translate="funding.stats.days">Days Remaining</h3>
                     <p class="stat-value" id="daysLeft">68</p>
                 </div>
             </div>
@@ -107,77 +107,143 @@
                 <div class="progress-bar">
                     <div class="progress-fill" id="progressFill"></div>
                 </div>
-                <p class="progress-text"><span id="progressPercent">38</span>% funded</p>
+                <p class="progress-text"><span id="progressPercent">38</span>% <span data-translate="funding.funded">funded</span></p>
+            </div>
+
+            <!-- Build Stages Progress -->
+            <div class="build-stages">
+                <h3 class="tiers-title" data-translate="funding.stages.title">Funding by Build Stage</h3>
+                <div class="stages-grid">
+                    <div class="stage-card" data-stage="fencing">
+                        <h4 data-translate="funding.stages.fencing.title">Fencing & Site Security</h4>
+                        <p class="stage-amount">€ 5,000</p>
+                        <div class="stage-progress">
+                            <div class="stage-fill" style="width: 100%"></div>
+                        </div>
+                        <p class="stage-status complete" data-translate="funding.stages.status.complete">✓ Complete</p>
+                    </div>
+                    <div class="stage-card" data-stage="foundations">
+                        <h4 data-translate="funding.stages.foundations.title">Foundations Build</h4>
+                        <p class="stage-amount">€ 12,000</p>
+                        <div class="stage-progress">
+                            <div class="stage-fill" style="width: 100%"></div>
+                        </div>
+                        <p class="stage-status complete" data-translate="funding.stages.status.complete">✓ Complete</p>
+                    </div>
+                    <div class="stage-card active" data-stage="timber">
+                        <h4 data-translate="funding.stages.timber.title">Timber Frame</h4>
+                        <p class="stage-amount">€ 18,500</p>
+                        <div class="stage-progress">
+                            <div class="stage-fill" style="width: 75%"></div>
+                        </div>
+                        <p class="stage-status progress" data-translate="funding.stages.status.progress">In Progress - 75%</p>
+                    </div>
+                    <div class="stage-card" data-stage="insulation">
+                        <h4 data-translate="funding.stages.insulation.title">Insulation & Walls</h4>
+                        <p class="stage-amount">€ 14,000</p>
+                        <div class="stage-progress">
+                            <div class="stage-fill" style="width: 30%"></div>
+                        </div>
+                        <p class="stage-status pending" data-translate="funding.stages.status.pending">Pending - 30%</p>
+                    </div>
+                    <div class="stage-card" data-stage="roof">
+                        <h4 data-translate="funding.stages.roof.title">Roof Installation</h4>
+                        <p class="stage-amount">€ 15,000</p>
+                        <div class="stage-progress">
+                            <div class="stage-fill" style="width: 0%"></div>
+                        </div>
+                        <p class="stage-status pending" data-translate="funding.stages.status.not_started">Not Started</p>
+                    </div>
+                </div>
             </div>
 
             <div class="funding-tiers">
-                <h3 class="tiers-title">Support Tiers</h3>
+                <h3 class="tiers-title" data-translate="funding.tiers.title">Support Tiers</h3>
                 <div class="tiers-grid">
                     <div class="tier-card">
-                        <h4>Seed Supporter</h4>
+                        <h4 data-translate="funding.tiers.seed.title">Seed Supporter</h4>
                         <p class="tier-amount">€ 25</p>
                         <ul>
-                            <li>Project updates via email</li>
-                            <li>Name on supporter wall</li>
-                            <li>Digital thank you card</li>
+                            <li data-translate="funding.tiers.seed.benefit1">Project updates via email</li>
+                            <li data-translate="funding.tiers.seed.benefit2">Name on supporter wall</li>
+                            <li data-translate="funding.tiers.seed.benefit3">Digital thank you card</li>
                         </ul>
-                        <button class="tier-btn" onclick="selectTier(25)">Choose Tier</button>
+                        <button class="tier-btn" onclick="selectTier(25, 'Seed Supporter')" data-translate="funding.tiers.button">Choose Tier</button>
                     </div>
                     <div class="tier-card featured">
-                        <h4>Timber Friend</h4>
+                        <h4 data-translate="funding.tiers.timber.title">Timber Friend</h4>
                         <p class="tier-amount">€ 100</p>
                         <ul>
-                            <li>All Seed Supporter benefits</li>
-                            <li>Invitation to build events</li>
-                            <li>Photo with completed house</li>
-                            <li>Personalized timber beam</li>
+                            <li data-translate="funding.tiers.timber.benefit1">All Seed Supporter benefits</li>
+                            <li data-translate="funding.tiers.timber.benefit2">Invitation to build events</li>
+                            <li data-translate="funding.tiers.timber.benefit3">Photo with completed house</li>
+                            <li data-translate="funding.tiers.timber.benefit4">Personalized timber beam</li>
                         </ul>
-                        <button class="tier-btn" onclick="selectTier(100)">Choose Tier</button>
+                        <button class="tier-btn" onclick="selectTier(100, 'Timber Friend')" data-translate="funding.tiers.button">Choose Tier</button>
                     </div>
                     <div class="tier-card">
-                        <h4>Forest Guardian</h4>
+                        <h4 data-translate="funding.tiers.guardian.title">Forest Guardian</h4>
                         <p class="tier-amount">€ 500</p>
                         <ul>
-                            <li>All Timber Friend benefits</li>
-                            <li>Weekend stay in completed house</li>
-                            <li>Workshop on timber framing</li>
-                            <li>Commemorative plaque</li>
+                            <li data-translate="funding.tiers.guardian.benefit1">All Timber Friend benefits</li>
+                            <li data-translate="funding.tiers.guardian.benefit2">Weekend stay in completed house</li>
+                            <li data-translate="funding.tiers.guardian.benefit3">Workshop on timber framing</li>
+                            <li data-translate="funding.tiers.guardian.benefit4">Commemorative plaque</li>
                         </ul>
-                        <button class="tier-btn" onclick="selectTier(500)">Choose Tier</button>
+                        <button class="tier-btn" onclick="selectTier(500, 'Forest Guardian')" data-translate="funding.tiers.button">Choose Tier</button>
                     </div>
                     <div class="tier-card">
-                        <h4>Mountain Builder</h4>
+                        <h4 data-translate="funding.tiers.builder.title">Mountain Builder</h4>
                         <p class="tier-amount">€ 1,500</p>
                         <ul>
-                            <li>All Forest Guardian benefits</li>
-                            <li>Week-long stay privilege</li>
-                            <li>Hands-on building experience</li>
-                            <li>Name on foundation stone</li>
+                            <li data-translate="funding.tiers.builder.benefit1">All Forest Guardian benefits</li>
+                            <li data-translate="funding.tiers.builder.benefit2">Week-long stay privilege</li>
+                            <li data-translate="funding.tiers.builder.benefit3">Hands-on building experience</li>
+                            <li data-translate="funding.tiers.builder.benefit4">Name on foundation stone</li>
                         </ul>
-                        <button class="tier-btn" onclick="selectTier(1500)">Choose Tier</button>
+                        <button class="tier-btn" onclick="selectTier(1500, 'Mountain Builder')" data-translate="funding.tiers.button">Choose Tier</button>
                     </div>
+                </div>
+            </div>
+
+            <!-- Cart Section -->
+            <div class="cart-section" id="cartSection" style="display: none;">
+                <h3 class="tiers-title" data-translate="funding.cart.title">Your Selection</h3>
+                <div class="cart-content">
+                    <div class="cart-item" id="cartItem">
+                        <div class="cart-item-details">
+                            <h4 id="cartTierName">-</h4>
+                            <p id="cartTierAmount">€ 0</p>
+                        </div>
+                        <button class="remove-btn" onclick="clearCart()" data-translate="funding.cart.remove">Remove</button>
+                    </div>
+                    <div class="cart-total">
+                        <strong data-translate="funding.cart.total">Total:</strong>
+                        <strong id="cartTotal">€ 0</strong>
+                    </div>
+                    <button class="checkout-btn" onclick="proceedToCheckout()" data-translate="funding.cart.checkout">Proceed to Checkout</button>
                 </div>
             </div>
 
             <!-- Payment Integration -->
-            <div class="payment-section">
-                <h3 class="tiers-title">Payment Options</h3>
+            <div class="payment-section" id="paymentSection" style="display: none;">
+                <h3 class="tiers-title" data-translate="funding.payment.title">Payment Options</h3>
                 <div class="payment-methods">
                     <button class="payment-btn stripe-btn" onclick="initiateStripePayment()">
                         <span class="payment-icon">💳</span>
-                        <span>Pay with Card (Stripe)</span>
+                        <span data-translate="funding.payment.stripe">Pay with Card (Stripe)</span>
                     </button>
                     <button class="payment-btn paypal-btn" onclick="initiatePayPalPayment()">
                         <span class="payment-icon">🅿️</span>
-                        <span>Pay with PayPal</span>
+                        <span data-translate="funding.payment.paypal">Pay with PayPal</span>
                     </button>
                     <button class="payment-btn bank-btn" onclick="showBankDetails()">
                         <span class="payment-icon">🏦</span>
-                        <span>Bank Transfer</span>
+                        <span data-translate="funding.payment.bank">Bank Transfer</span>
                     </button>
                 </div>
                 <div id="payment-details" class="payment-details" style="display: none;"></div>
-                <p class="payment-note">All payments are secure and encrypted. You'll receive a confirmation email with your supporter benefits.</p>
+                <p class="payment-note" data-translate="funding.payment.note">All payments are secure and encrypted. You'll receive a confirmation email with your supporter benefits.</p>
             </div>
 
             <div class="chart-container">
@@ -189,10 +255,11 @@
     <!-- Gallery Section -->
     <section id="gallery" class="gallery">
         <div class="container">
-            <h2 class="section-title">Project Gallery</h2>
-            <p class="section-subtitle">Timber frame design and off-grid features</p>
+            <h2 class="section-title" data-translate="gallery.title">Project Gallery</h2>
+            <p class="section-subtitle" data-translate="gallery.subtitle">Timber frame design and off-grid features</p>
             
-            <div class="gallery-grid">
+            <div class="gallery-grid" id="galleryGrid">
+                <!-- Gallery items will be loaded dynamically from admin panel -->
                 <div class="gallery-item">
                     <div class="gallery-placeholder" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
                         <p>Timber Frame Design</p>
@@ -521,53 +588,53 @@
     <!-- Contact Section -->
     <section id="support" class="contact">
         <div class="container">
-            <h2 class="section-title">Join Our Community</h2>
-            <p class="section-subtitle">Get involved in building this sustainable project</p>
+            <h2 class="section-title" data-translate="contact.title">Join Our Community</h2>
+            <p class="section-subtitle" data-translate="contact.subtitle">Get involved in building this sustainable project</p>
             
             <div class="contact-wrapper">
                 <div class="contact-info">
                     <div class="contact-item">
-                        <h3>📧 Email</h3>
+                        <h3>📧 <span data-translate="contact.email">Email</span></h3>
                         <p>hello@carpathiantimber.org</p>
                     </div>
                     <div class="contact-item">
-                        <h3>📍 Project Location</h3>
+                        <h3>📍 <span data-translate="contact.location">Project Location</span></h3>
                         <p>Carpathian Mountains<br>Brașov County, Romania</p>
                     </div>
                     <div class="contact-item">
-                        <h3>🌐 Social Media</h3>
-                        <p>@CarpathianTimber<br>Follow our progress!</p>
+                        <h3>🌐 <span data-translate="contact.social">Social Media</span></h3>
+                        <p>@CarpathianTimber<br><span data-translate="contact.follow">Follow our progress!</span></p>
                     </div>
                     <div class="contact-item">
-                        <h3>🛠️ Build Days</h3>
-                        <p>Weekends & Holidays<br>Join the building team!</p>
+                        <h3>🛠️ <span data-translate="contact.builddays">Build Days</span></h3>
+                        <p><span data-translate="contact.schedule">Weekends & Holidays</span><br><span data-translate="contact.join">Join the building team!</span></p>
                     </div>
                 </div>
 
                 <form class="contact-form" onsubmit="handleSubmit(event)">
                     <div class="form-group">
-                        <input type="text" id="name" placeholder="Your Name" required>
+                        <input type="text" id="name" placeholder="Your Name" data-translate-placeholder="contact.form.name" required>
                     </div>
                     <div class="form-group">
-                        <input type="email" id="email" placeholder="Your Email" required>
+                        <input type="email" id="email" placeholder="Your Email" data-translate-placeholder="contact.form.email" required>
                     </div>
                     <div class="form-group">
-                        <input type="tel" id="phone" placeholder="Your Phone">
+                        <input type="tel" id="phone" placeholder="Your Phone" data-translate-placeholder="contact.form.phone">
                     </div>
                     <div class="form-group">
                         <select id="interest" required>
-                            <option value="" disabled selected>I want to...</option>
-                            <option value="support">Support Financially</option>
-                            <option value="volunteer">Volunteer to Build</option>
-                            <option value="visit">Visit the Project</option>
-                            <option value="updates">Get Updates</option>
-                            <option value="other">Other</option>
+                            <option value="" disabled selected data-translate="contact.form.interest">I want to...</option>
+                            <option value="support" data-translate="contact.form.option1">Support Financially</option>
+                            <option value="volunteer" data-translate="contact.form.option2">Volunteer to Build</option>
+                            <option value="visit" data-translate="contact.form.option3">Visit the Project</option>
+                            <option value="updates" data-translate="contact.form.option4">Get Updates</option>
+                            <option value="other" data-translate="contact.form.option5">Other</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <textarea id="message" rows="5" placeholder="Tell us how you'd like to get involved..." required></textarea>
+                        <textarea id="message" rows="5" placeholder="Tell us how you'd like to get involved..." data-translate-placeholder="contact.form.message" required></textarea>
                     </div>
-                    <button type="submit" class="submit-btn">Join the Project</button>
+                    <button type="submit" class="submit-btn" data-translate="contact.form.submit">Join the Project</button>
                 </form>
             </div>
         </div>

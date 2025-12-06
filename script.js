@@ -244,6 +244,64 @@ const translations = {
         'hero.title': 'Crowdsourced Off-Grid Timber Frame House',
         'hero.subtitle': 'Join us in building a sustainable off-grid home in the Carpathian Mountains',
         'hero.cta': 'Support Our Project',
+        'about.title': 'About Our Project',
+        'about.timber.title': 'Timber Frame Construction',
+        'about.timber.desc': 'Traditional timber frame building using locally sourced wood from sustainable Carpathian forests. A timeless construction method that\'s both beautiful and durable.',
+        'about.offgrid.title': 'Off-Grid Living',
+        'about.offgrid.desc': 'Completely self-sufficient with solar panels, rainwater harvesting, and natural heating systems. Living in harmony with nature.',
+        'about.community.title': 'Community Crowdsourced',
+        'about.community.desc': 'Built by and for the community. Your contribution helps create a demonstration of sustainable living and inspires others to follow.',
+        'about.eco.title': 'Eco-Friendly Design',
+        'about.eco.desc': 'Minimal environmental impact using natural materials, passive solar design, and renewable energy. A blueprint for sustainable mountain living.',
+        'funding.title': 'Crowdfunding Progress',
+        'funding.subtitle': 'Help us build this sustainable off-grid timber frame home',
+        'funding.stats.goal': 'Total Goal',
+        'funding.stats.raised': 'Raised So Far',
+        'funding.stats.supporters': 'Supporters',
+        'funding.stats.days': 'Days Remaining',
+        'funding.funded': 'funded',
+        'funding.stages.title': 'Funding by Build Stage',
+        'funding.stages.fencing.title': 'Fencing & Site Security',
+        'funding.stages.foundations.title': 'Foundations Build',
+        'funding.stages.timber.title': 'Timber Frame',
+        'funding.stages.insulation.title': 'Insulation & Walls',
+        'funding.stages.roof.title': 'Roof Installation',
+        'funding.stages.status.complete': '✓ Complete',
+        'funding.stages.status.progress': 'In Progress - 75%',
+        'funding.stages.status.pending': 'Pending - 30%',
+        'funding.stages.status.not_started': 'Not Started',
+        'funding.tiers.title': 'Support Tiers',
+        'funding.tiers.seed.title': 'Seed Supporter',
+        'funding.tiers.seed.benefit1': 'Project updates via email',
+        'funding.tiers.seed.benefit2': 'Name on supporter wall',
+        'funding.tiers.seed.benefit3': 'Digital thank you card',
+        'funding.tiers.timber.title': 'Timber Friend',
+        'funding.tiers.timber.benefit1': 'All Seed Supporter benefits',
+        'funding.tiers.timber.benefit2': 'Invitation to build events',
+        'funding.tiers.timber.benefit3': 'Photo with completed house',
+        'funding.tiers.timber.benefit4': 'Personalized timber beam',
+        'funding.tiers.guardian.title': 'Forest Guardian',
+        'funding.tiers.guardian.benefit1': 'All Timber Friend benefits',
+        'funding.tiers.guardian.benefit2': 'Weekend stay in completed house',
+        'funding.tiers.guardian.benefit3': 'Workshop on timber framing',
+        'funding.tiers.guardian.benefit4': 'Commemorative plaque',
+        'funding.tiers.builder.title': 'Mountain Builder',
+        'funding.tiers.builder.benefit1': 'All Forest Guardian benefits',
+        'funding.tiers.builder.benefit2': 'Week-long stay privilege',
+        'funding.tiers.builder.benefit3': 'Hands-on building experience',
+        'funding.tiers.builder.benefit4': 'Name on foundation stone',
+        'funding.tiers.button': 'Choose Tier',
+        'funding.cart.title': 'Your Selection',
+        'funding.cart.remove': 'Remove',
+        'funding.cart.total': 'Total:',
+        'funding.cart.checkout': 'Proceed to Checkout',
+        'funding.payment.title': 'Payment Options',
+        'funding.payment.stripe': 'Pay with Card (Stripe)',
+        'funding.payment.paypal': 'Pay with PayPal',
+        'funding.payment.bank': 'Bank Transfer',
+        'funding.payment.note': 'All payments are secure and encrypted. You\'ll receive a confirmation email with your supporter benefits.',
+        'gallery.title': 'Project Gallery',
+        'gallery.subtitle': 'Timber frame design and off-grid features',
         'features.title': 'Project Features',
         'features.transparent': '100% Transparent',
         'features.transparent_desc': 'Every euro tracked and shared publicly with regular updates',
@@ -261,7 +319,27 @@ const translations = {
         'volunteer.title': 'Volunteer Schedule',
         'volunteer.subtitle': 'Join us on the build site',
         'materials.title': 'Materials & Costs',
-        'materials.subtitle': 'Transparent breakdown of project expenses'
+        'materials.subtitle': 'Transparent breakdown of project expenses',
+        'contact.title': 'Join Our Community',
+        'contact.subtitle': 'Get involved in building this sustainable project',
+        'contact.email': 'Email',
+        'contact.location': 'Project Location',
+        'contact.social': 'Social Media',
+        'contact.follow': 'Follow our progress!',
+        'contact.builddays': 'Build Days',
+        'contact.schedule': 'Weekends & Holidays',
+        'contact.join': 'Join the building team!',
+        'contact.form.name': 'Your Name',
+        'contact.form.email': 'Your Email',
+        'contact.form.phone': 'Your Phone',
+        'contact.form.interest': 'I want to...',
+        'contact.form.option1': 'Support Financially',
+        'contact.form.option2': 'Volunteer to Build',
+        'contact.form.option3': 'Visit the Project',
+        'contact.form.option4': 'Get Updates',
+        'contact.form.option5': 'Other',
+        'contact.form.message': 'Tell us how you\'d like to get involved...',
+        'contact.form.submit': 'Join the Project'
     },
     ro: {
         'nav.home': 'Acasă',
@@ -274,6 +352,64 @@ const translations = {
         'hero.title': 'Casă din Lemn Off-Grid Finanțată de Comunitate',
         'hero.subtitle': 'Alătură-te nouă în construirea unei case sustenabile off-grid în Munții Carpați',
         'hero.cta': 'Susține Proiectul',
+        'about.title': 'Despre Proiectul Nostru',
+        'about.timber.title': 'Construcție din Lemn',
+        'about.timber.desc': 'Construcție tradițională din lemn folosind lemn de proveniență locală din pădurile durabile ale Carpaților. O metodă de construcție atemporală, atât frumoasă, cât și durabilă.',
+        'about.offgrid.title': 'Viață Off-Grid',
+        'about.offgrid.desc': 'Complet autosuficient cu panouri solare, colectare de apă pluvială și sisteme naturale de încălzire. Viața în armonie cu natura.',
+        'about.community.title': 'Finanțat de Comunitate',
+        'about.community.desc': 'Construit de și pentru comunitate. Contribuția ta ajută la crearea unei demonstrații de viață durabilă și inspiră pe alții să urmeze.',
+        'about.eco.title': 'Design Ecologic',
+        'about.eco.desc': 'Impact minim asupra mediului folosind materiale naturale, design solar pasiv și energie regenerabilă. Un model pentru viața durabilă în munte.',
+        'funding.title': 'Progres Finanțare',
+        'funding.subtitle': 'Ajută-ne să construim această casă sustenabilă din lemn off-grid',
+        'funding.stats.goal': 'Obiectiv Total',
+        'funding.stats.raised': 'Strâns Până Acum',
+        'funding.stats.supporters': 'Susținători',
+        'funding.stats.days': 'Zile Rămase',
+        'funding.funded': 'finanțat',
+        'funding.stages.title': 'Finanțare pe Etape de Construcție',
+        'funding.stages.fencing.title': 'Împrejmuire & Securitate Șantier',
+        'funding.stages.foundations.title': 'Construcție Fundații',
+        'funding.stages.timber.title': 'Structură din Lemn',
+        'funding.stages.insulation.title': 'Izolație & Pereți',
+        'funding.stages.roof.title': 'Instalare Acoperiș',
+        'funding.stages.status.complete': '✓ Completat',
+        'funding.stages.status.progress': 'În Desfășurare - 75%',
+        'funding.stages.status.pending': 'În Așteptare - 30%',
+        'funding.stages.status.not_started': 'Neînceput',
+        'funding.tiers.title': 'Niveluri de Susținere',
+        'funding.tiers.seed.title': 'Susținător Sămânță',
+        'funding.tiers.seed.benefit1': 'Actualizări proiect prin email',
+        'funding.tiers.seed.benefit2': 'Nume pe peretele susținătorilor',
+        'funding.tiers.seed.benefit3': 'Cartonaș de mulțumire digital',
+        'funding.tiers.timber.title': 'Prieten al Lemnului',
+        'funding.tiers.timber.benefit1': 'Toate beneficiile Susținător Sămânță',
+        'funding.tiers.timber.benefit2': 'Invitație la evenimentele de construcție',
+        'funding.tiers.timber.benefit3': 'Fotografie cu casa finalizată',
+        'funding.tiers.timber.benefit4': 'Grindă personalizată',
+        'funding.tiers.guardian.title': 'Paznic al Pădurii',
+        'funding.tiers.guardian.benefit1': 'Toate beneficiile Prieten al Lemnului',
+        'funding.tiers.guardian.benefit2': 'Sejur de weekend în casa finalizată',
+        'funding.tiers.guardian.benefit3': 'Atelier despre construcția din lemn',
+        'funding.tiers.guardian.benefit4': 'Placă comemorativă',
+        'funding.tiers.builder.title': 'Constructor Montan',
+        'funding.tiers.builder.benefit1': 'Toate beneficiile Paznic al Pădurii',
+        'funding.tiers.builder.benefit2': 'Privilegiu de sejur o săptămână',
+        'funding.tiers.builder.benefit3': 'Experiență practică de construcție',
+        'funding.tiers.builder.benefit4': 'Nume pe piatra de temelie',
+        'funding.tiers.button': 'Alege Nivel',
+        'funding.cart.title': 'Selecția Ta',
+        'funding.cart.remove': 'Elimină',
+        'funding.cart.total': 'Total:',
+        'funding.cart.checkout': 'Continuă la Plată',
+        'funding.payment.title': 'Opțiuni de Plată',
+        'funding.payment.stripe': 'Plătește cu Cardul (Stripe)',
+        'funding.payment.paypal': 'Plătește cu PayPal',
+        'funding.payment.bank': 'Transfer Bancar',
+        'funding.payment.note': 'Toate plățile sunt sigure și criptate. Vei primi un email de confirmare cu beneficiile tale de susținător.',
+        'gallery.title': 'Galerie Proiect',
+        'gallery.subtitle': 'Design structură din lemn și caracteristici off-grid',
         'features.title': 'Caracteristici Proiect',
         'features.transparent': '100% Transparent',
         'features.transparent_desc': 'Fiecare euro urmărit și partajat public cu actualizări regulate',
@@ -291,7 +427,27 @@ const translations = {
         'volunteer.title': 'Program Voluntariat',
         'volunteer.subtitle': 'Alătură-te nouă la șantier',
         'materials.title': 'Materiale & Costuri',
-        'materials.subtitle': 'Detaliere transparentă a cheltuielilor proiectului'
+        'materials.subtitle': 'Detaliere transparentă a cheltuielilor proiectului',
+        'contact.title': 'Alătură-te Comunității',
+        'contact.subtitle': 'Implică-te în construirea acestui proiect sustenabil',
+        'contact.email': 'Email',
+        'contact.location': 'Locație Proiect',
+        'contact.social': 'Rețele Sociale',
+        'contact.follow': 'Urmărește progresul nostru!',
+        'contact.builddays': 'Zile de Construcție',
+        'contact.schedule': 'Weekend-uri & Sărbători',
+        'contact.join': 'Alătură-te echipei de construcție!',
+        'contact.form.name': 'Numele Tău',
+        'contact.form.email': 'Emailul Tău',
+        'contact.form.phone': 'Telefonul Tău',
+        'contact.form.interest': 'Doresc să...',
+        'contact.form.option1': 'Susțin Financiar',
+        'contact.form.option2': 'Voluntariez la Construcție',
+        'contact.form.option3': 'Vizitez Proiectul',
+        'contact.form.option4': 'Primesc Actualizări',
+        'contact.form.option5': 'Altceva',
+        'contact.form.message': 'Spune-ne cum ai dori să te implici...',
+        'contact.form.submit': 'Alătură-te Proiectului'
     }
 };
 
@@ -310,16 +466,58 @@ function switchLanguage(lang) {
             element.textContent = translations[lang][key];
         }
     });
+    
+    // Update placeholders
+    document.querySelectorAll('[data-translate-placeholder]').forEach(element => {
+        const key = element.getAttribute('data-translate-placeholder');
+        if (translations[lang] && translations[lang][key]) {
+            element.placeholder = translations[lang][key];
+        }
+    });
 }
 
 // Payment Integration (Stripe)
 let selectedTierAmount = 0;
+let selectedTierName = '';
 
-function selectTier(amount) {
+// Cart System
+function selectTier(amount, tierName) {
     selectedTierAmount = amount;
-    showNotification(`Selected €${amount} tier. Choose a payment method below.`);
-    // Scroll to payment section
-    document.querySelector('.payment-section').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    selectedTierName = tierName;
+    
+    // Update cart UI
+    document.getElementById('cartTierName').textContent = tierName;
+    document.getElementById('cartTierAmount').textContent = `€ ${amount}`;
+    document.getElementById('cartTotal').textContent = `€ ${amount}`;
+    
+    // Show cart section
+    document.getElementById('cartSection').style.display = 'block';
+    
+    // Scroll to cart
+    document.getElementById('cartSection').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    
+    showNotification(`Added ${tierName} (€${amount}) to your selection.`);
+}
+
+function clearCart() {
+    selectedTierAmount = 0;
+    selectedTierName = '';
+    document.getElementById('cartSection').style.display = 'none';
+    document.getElementById('paymentSection').style.display = 'none';
+    showNotification('Selection cleared.');
+}
+
+function proceedToCheckout() {
+    if (selectedTierAmount === 0) {
+        showNotification('Please select a support tier first.');
+        return;
+    }
+    
+    // Show payment section
+    document.getElementById('paymentSection').style.display = 'block';
+    
+    // Scroll to payment
+    document.getElementById('paymentSection').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
 
 function initiateStripePayment() {
@@ -328,18 +526,48 @@ function initiateStripePayment() {
         return;
     }
     
-    // In production, this would create a Stripe checkout session
-    showNotification(`Stripe payment of €${selectedTierAmount} would be processed here. Backend integration required.`);
+    // Check if Stripe is loaded
+    if (typeof Stripe === 'undefined') {
+        showNotification('Stripe is not loaded. Please refresh the page.');
+        return;
+    }
     
-    // Placeholder for actual Stripe integration:
-    // const stripe = Stripe('your_publishable_key');
-    // fetch('/create-checkout-session', {
-    //     method: 'POST',
-    //     headers: { 'Content-Type': 'application/json' },
-    //     body: JSON.stringify({ amount: selectedTierAmount })
-    // })
-    // .then(response => response.json())
-    // .then(session => stripe.redirectToCheckout({ sessionId: session.id }));
+    // In production, this would use your actual Stripe publishable key
+    // const stripe = Stripe('pk_live_YOUR_PUBLISHABLE_KEY');
+    
+    showNotification(`Stripe checkout for €${selectedTierAmount} would open here. 
+        
+To complete integration:
+1. Add your Stripe publishable key
+2. Create backend endpoint /create-checkout-session
+3. Uncomment integration code in script.js`);
+    
+    // Production code (uncomment when backend is ready):
+    /*
+    fetch('/api/create-checkout-session', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+            amount: selectedTierAmount,
+            tierName: selectedTierName,
+            currency: 'eur'
+        })
+    })
+    .then(response => response.json())
+    .then(session => {
+        const stripe = Stripe('pk_live_YOUR_PUBLISHABLE_KEY');
+        return stripe.redirectToCheckout({ sessionId: session.id });
+    })
+    .then(result => {
+        if (result.error) {
+            showNotification(result.error.message);
+        }
+    })
+    .catch(error => {
+        showNotification('Payment failed. Please try again.');
+        console.error('Error:', error);
+    });
+    */
 }
 
 function initiatePayPalPayment() {
