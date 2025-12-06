@@ -5,8 +5,13 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { timelineEventSchema, type TimelineEventInput } from '@/lib/validations';
 
+interface TimelineEvent extends TimelineEventInput {
+  _id: string;
+  createdAt: string;
+}
+
 export default function TimelineManager() {
-  const [events, setEvents] = useState<any[]>([]);
+  const [events, setEvents] = useState<TimelineEvent[]>([]);
   const [loading, setLoading] = useState(false);
 
   const { register, handleSubmit, formState: { errors }, reset } = useForm<TimelineEventInput>({

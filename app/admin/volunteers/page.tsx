@@ -5,8 +5,14 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { buildDaySchema, type BuildDayInput } from '@/lib/validations';
 
+interface BuildDay extends BuildDayInput {
+  _id: string;
+  createdAt: string;
+  volunteers?: string[];
+}
+
 export default function VolunteersManager() {
-  const [buildDays, setBuildDays] = useState<any[]>([]);
+  const [buildDays, setBuildDays] = useState<BuildDay[]>([]);
   const [loading, setLoading] = useState(false);
 
   const { register, handleSubmit, formState: { errors }, reset } = useForm<BuildDayInput>({

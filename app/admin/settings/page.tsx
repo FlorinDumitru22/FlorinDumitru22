@@ -1,12 +1,18 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 
+interface Admin {
+  username: string
+  email?: string
+  lastLogin?: string
+}
+
 export default function AdminSettings() {
   const router = useRouter()
-  const [admin, setAdmin] = useState<any>(null)
+  const [admin, setAdmin] = useState<Admin | null>(null)
   const [loading, setLoading] = useState(true)
   const [currentPassword, setCurrentPassword] = useState('')
   const [newPassword, setNewPassword] = useState('')
@@ -14,11 +20,7 @@ export default function AdminSettings() {
   const [message, setMessage] = useState('')
   const [error, setError] = useState('')
 
-  useEffect(() => {
-    checkAuth()
-  }, [])
-
-  const checkAuth = async () => {
+  const checkAuth = useCallback(async () => {
     try {
       const res = await fetch('/api/auth/me')
       if (!res.ok) {
@@ -27,12 +29,16 @@ export default function AdminSettings() {
       }
       const data = await res.json()
       setAdmin(data.admin)
-    } catch (error) {
+    } catch {
       router.push('/admin')
     } finally {
       setLoading(false)
     }
-  }
+  }, [router])
+
+  useEffect(() => {
+    checkAuth()
+  }, [checkAuth])
 
   const handleChangePassword = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -67,7 +73,7 @@ export default function AdminSettings() {
       setCurrentPassword('')
       setNewPassword('')
       setConfirmPassword('')
-    } catch (err) {
+    } catch {
       setError('An error occurred. Please try again.')
     }
   }

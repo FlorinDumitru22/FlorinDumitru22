@@ -18,7 +18,13 @@ export async function POST(request: NextRequest) {
     await dbConnect()
 
     if (event.type === 'checkout.session.completed') {
-      const session = event.data.object as any
+      const session = event.data.object as unknown as {
+        id: string
+        metadata: { name?: string; tier: string; message?: string }
+        customer_details?: { email?: string }
+        amount_total: number
+        customer?: string
+      }
 
       // Create or update supporter record
       const supporter = await Supporter.findOneAndUpdate(

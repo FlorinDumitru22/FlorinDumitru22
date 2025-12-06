@@ -1,19 +1,19 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 
+interface Admin {
+  username: string
+}
+
 export default function AdminDashboard() {
   const router = useRouter()
-  const [admin, setAdmin] = useState<any>(null)
+  const [admin, setAdmin] = useState<Admin | null>(null)
   const [loading, setLoading] = useState(true)
 
-  useEffect(() => {
-    checkAuth()
-  }, [])
-
-  const checkAuth = async () => {
+  const checkAuth = useCallback(async () => {
     try {
       const res = await fetch('/api/auth/me')
       if (!res.ok) {
@@ -22,12 +22,16 @@ export default function AdminDashboard() {
       }
       const data = await res.json()
       setAdmin(data.admin)
-    } catch (error) {
+    } catch {
       router.push('/admin')
     } finally {
       setLoading(false)
     }
-  }
+  }, [router])
+
+  useEffect(() => {
+    checkAuth()
+  }, [checkAuth])
 
   const handleLogout = async () => {
     await fetch('/api/auth/logout', { method: 'POST' })

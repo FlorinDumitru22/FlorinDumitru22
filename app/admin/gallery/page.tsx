@@ -5,8 +5,13 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { galleryImageSchema, type GalleryImageInput } from '@/lib/validations';
 
+interface GalleryImage extends GalleryImageInput {
+  _id: string;
+  createdAt: string;
+}
+
 export default function GalleryManager() {
-  const [images, setImages] = useState<any[]>([]);
+  const [images, setImages] = useState<GalleryImage[]>([]);
   const [loading, setLoading] = useState(false);
 
   const { register, handleSubmit, formState: { errors }, reset } = useForm<GalleryImageInput>({

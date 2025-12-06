@@ -1,17 +1,6 @@
 import '@/app/globals.css'
 import type { Metadata } from 'next'
-import { Montserrat, Playfair_Display } from 'next/font/google'
 import { LanguageProvider } from '@/contexts/LanguageContext'
-
-const montserrat = Montserrat({ 
-  subsets: ['latin'],
-  variable: '--font-montserrat',
-})
-
-const playfair = Playfair_Display({ 
-  subsets: ['latin'],
-  variable: '--font-playfair',
-})
 
 export const metadata: Metadata = {
   title: 'Carpathian Timber Frame | Crowdfunded Off-Grid Home',
@@ -24,7 +13,12 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${montserrat.variable} ${playfair.variable}`}>
+    <html lang="en">
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet" />
+      </head>
       <body className="font-sans">
         <LanguageProvider>
           {children}

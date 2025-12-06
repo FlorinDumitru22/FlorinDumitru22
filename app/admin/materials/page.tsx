@@ -5,8 +5,13 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { materialSchema, type MaterialInput } from '@/lib/validations';
 
+interface Material extends MaterialInput {
+  _id: string;
+  createdAt: string;
+}
+
 export default function MaterialsManager() {
-  const [materials, setMaterials] = useState<any[]>([]);
+  const [materials, setMaterials] = useState<Material[]>([]);
   const [loading, setLoading] = useState(false);
 
   const { register, handleSubmit, formState: { errors }, reset } = useForm<MaterialInput>({
