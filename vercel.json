@@ -1,4 +1,3 @@
-# Vercel configuration
 {
   "buildCommand": "npm run build",
   "outputDirectory": ".next",
