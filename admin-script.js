@@ -98,6 +98,15 @@ function showNotification(message, type = 'success') {
 
 // Initialize page
 document.addEventListener('DOMContentLoaded', () => {
+    // Initialize default credentials if not set
+    if (!localStorage.getItem('adminCredentials')) {
+        const defaultCredentials = {
+            username: 'admin',
+            password: 'admin123'
+        };
+        localStorage.setItem('adminCredentials', JSON.stringify(defaultCredentials));
+    }
+    
     // Check if user is logged in
     const isLoggedIn = localStorage.getItem('adminLoggedIn') === 'true';
     
@@ -105,6 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
         showLoginModal();
     } else {
         hideLoginModal();
+        updateCurrentUserInfo();
     }
     
     // Load saved funding data if exists
@@ -158,17 +168,23 @@ function handleAdminLogin(event) {
     const password = document.getElementById('adminPassword').value;
     const rememberMe = document.getElementById('rememberMe').checked;
     
-    // Demo authentication - in production, this should validate against backend
-    // Default credentials: admin / admin123
-    if (username === 'admin' && password === 'admin123') {
+    // Get stored credentials
+    const storedCredentials = JSON.parse(localStorage.getItem('adminCredentials') || '{"username":"admin","password":"admin123"}');
+    
+    // Validate credentials
+    if (username === storedCredentials.username && password === storedCredentials.password) {
         localStorage.setItem('adminLoggedIn', 'true');
+        localStorage.setItem('adminCurrentUser', username);
+        localStorage.setItem('adminLastLogin', new Date().toISOString());
+        
         if (rememberMe) {
             localStorage.setItem('adminRememberMe', 'true');
         }
         hideLoginModal();
+        updateCurrentUserInfo();
         showNotification('Login successful! Welcome to the admin panel.', 'success');
     } else {
-        showNotification('Invalid username or password. Try: admin / admin123', 'error');
+        showNotification('Invalid username or password.', 'error');
     }
     
     // In production, implement proper authentication:
@@ -284,3 +300,91 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+// Credential Management Functions
+function handleChangeCredentials(event) {
+    event.preventDefault();
+    
+    const currentPassword = document.getElementById('currentPassword').value;
+    const newUsername = document.getElementById('newUsername').value.trim();
+    const newPassword = document.getElementById('newPassword').value;
+    const confirmPassword = document.getElementById('confirmPassword').value;
+    
+    // Get current credentials
+    const storedCredentials = JSON.parse(localStorage.getItem('adminCredentials') || '{"username":"admin","password":"admin123"}');
+    
+    // Verify current password
+    if (currentPassword !== storedCredentials.password) {
+        showNotification('Current password is incorrect.', 'error');
+        return;
+    }
+    
+    // Validate new password confirmation
+    if (newPassword && newPassword !== confirmPassword) {
+        showNotification('New passwords do not match.', 'error');
+        return;
+    }
+    
+    // Update credentials
+    const updatedCredentials = {
+        username: newUsername || storedCredentials.username,
+        password: newPassword || storedCredentials.password
+    };
+    
+    localStorage.setItem('adminCredentials', JSON.stringify(updatedCredentials));
+    
+    // Update current user if username changed
+    if (newUsername) {
+        localStorage.setItem('adminCurrentUser', newUsername);
+    }
+    
+    // Clear form
+    document.getElementById('currentPassword').value = '';
+    document.getElementById('newUsername').value = '';
+    document.getElementById('newPassword').value = '';
+    document.getElementById('confirmPassword').value = '';
+    
+    updateCurrentUserInfo();
+    showNotification('Admin credentials updated successfully!', 'success');
+}
+
+function updateCurrentUserInfo() {
+    const currentUser = localStorage.getItem('adminCurrentUser') || 'admin';
+    const lastLogin = localStorage.getItem('adminLastLogin');
+    
+    const usernameEl = document.getElementById('currentUsername');
+    const lastLoginEl = document.getElementById('lastLogin');
+    
+    if (usernameEl) {
+        usernameEl.textContent = currentUser;
+    }
+    
+    if (lastLoginEl && lastLogin) {
+        const loginDate = new Date(lastLogin);
+        lastLoginEl.textContent = loginDate.toLocaleString();
+    }
+}
+
+function toggleRequireLogin() {
+    const requireLogin = document.getElementById('requireLoginOnReload').checked;
+    
+    if (requireLogin) {
+        localStorage.removeItem('adminRememberMe');
+        showNotification('Login will be required on every page reload.', 'success');
+    } else {
+        showNotification('Remember me feature is now available.', 'success');
+    }
+}
+
+function clearAllSessions() {
+    if (confirm('Are you sure you want to clear all sessions? You will be logged out.')) {
+        localStorage.removeItem('adminLoggedIn');
+        localStorage.removeItem('adminToken');
+        localStorage.removeItem('adminRememberMe');
+        localStorage.removeItem('adminCurrentUser');
+        localStorage.removeItem('adminLastLogin');
+        
+        showLoginModal();
+        showNotification('All sessions cleared. Please log in again.', 'success');
+    }
+}

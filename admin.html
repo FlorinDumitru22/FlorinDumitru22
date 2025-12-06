@@ -45,6 +45,10 @@
                     <span class="icon">📹</span>
                     <span>Live Stream</span>
                 </a>
+                <a href="#settings" class="nav-item" onclick="showSection('settings')">
+                    <span class="icon">⚙️</span>
+                    <span>Settings</span>
+                </a>
                 <a href="index.html" class="nav-item">
                     <span class="icon">🏠</span>
                     <span>Back to Website</span>
@@ -605,6 +609,68 @@
                         <h4>Custom RTMP</h4>
                         <p>For custom streaming servers, provide the embed player URL or iframe code.</p>
                     </div>
+                </div>
+            </section>
+
+            <!-- Settings Section -->
+            <section id="settings" class="admin-section">
+                <h2>Admin Settings</h2>
+                <div class="admin-card">
+                    <h3>Change Admin Credentials</h3>
+                    <form class="admin-form" onsubmit="handleChangeCredentials(event)">
+                        <div class="form-group">
+                            <label>Current Password</label>
+                            <input type="password" id="currentPassword" placeholder="Enter current password" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>New Username</label>
+                                <input type="text" id="newUsername" placeholder="Enter new username (optional)">
+                                <p class="help-text">Leave blank to keep current username</p>
+                            </div>
+                            <div class="form-group">
+                                <label>New Password</label>
+                                <input type="password" id="newPassword" placeholder="Enter new password (optional)">
+                                <p class="help-text">Leave blank to keep current password</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Confirm New Password</label>
+                            <input type="password" id="confirmPassword" placeholder="Confirm new password">
+                        </div>
+                        <button type="submit" class="btn-primary">Update Credentials</button>
+                    </form>
+                </div>
+
+                <div class="admin-card">
+                    <h3>Current Admin Information</h3>
+                    <table class="admin-table">
+                        <tbody>
+                            <tr>
+                                <td><strong>Username:</strong></td>
+                                <td id="currentUsername">admin</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Last Login:</strong></td>
+                                <td id="lastLogin">-</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Session Status:</strong></td>
+                                <td><span class="badge badge-active">Active</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="admin-card">
+                    <h3>Security Settings</h3>
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="requireLoginOnReload" onchange="toggleRequireLogin()">
+                            <span>Require login on every page reload (disable "Remember me")</span>
+                        </label>
+                    </div>
+                    <button type="button" class="btn-small btn-danger" onclick="clearAllSessions()">Clear All Sessions</button>
                 </div>
             </section>
         </main>
