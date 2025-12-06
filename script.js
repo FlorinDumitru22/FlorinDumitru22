@@ -31,13 +31,6 @@ function updateFundingProgress() {
     updateChart(raisedAmount, totalGoal - raisedAmount);
 }
 
-// Tier Selection
-function selectTier(amount) {
-    showNotification(`Thank you for choosing the €${amount} tier! You'll be redirected to payment...`);
-    // In a real application, this would redirect to a payment processor
-    console.log(`Selected tier: €${amount}`);
-}
-
 // Chart functionality for funding breakdown
 function updateChart(raised, remaining) {
     const canvas = document.getElementById('paymentChart');

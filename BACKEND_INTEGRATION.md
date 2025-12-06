@@ -6,6 +6,15 @@ This document outlines how to integrate backend services with the Carpathian Tim
 
 The website is currently a static frontend with placeholders for backend integration. All interactive features are ready to connect to backend APIs.
 
+## Recent Updates
+
+### Version 2.0 Features
+- **Multi-language Support**: Full English and Romanian translations
+- **Shopping Cart System**: Support tier selection with cart management
+- **Build Stage Tracking**: Funding progress divided by construction phases
+- **Admin Panel**: Complete admin interface for managing all aspects of the project
+- **Enhanced Stripe Integration**: Ready-to-use Stripe checkout flow
+
 ## Payment Integration
 
 ### Stripe Integration
@@ -494,6 +503,317 @@ app.post('/api/contact', async (req, res) => {
 - [ ] Test email notifications
 - [ ] Load test API endpoints
 - [ ] Set up backup strategy
+
+## Admin Panel Integration
+
+### Overview
+
+The admin panel (`admin.html`) provides a complete interface for managing all aspects of the crowdfunding project. It requires backend API integration to function fully.
+
+### Admin API Endpoints
+
+#### 1. Funding Management
+
+**POST /api/admin/funding/stats**
+```json
+{
+  "totalGoal": 85000,
+  "raisedAmount": 32450,
+  "supporterCount": 147,
+  "daysRemaining": 68
+}
+```
+
+**POST /api/admin/funding/stages**
+```json
+{
+  "stage": "timber",
+  "budget": 18500,
+  "progress": 75,
+  "status": "progress"
+}
+```
+
+#### 2. Gallery Management
+
+**POST /api/admin/gallery/upload**
+- Multipart form data with image file
+- Fields: `stage`, `title`, `description`, `image`
+
+**GET /api/admin/gallery**
+- Returns list of all gallery images
+
+**DELETE /api/admin/gallery/:id**
+- Removes gallery image by ID
+
+#### 3. Build Progress Timeline
+
+**POST /api/admin/timeline**
+```json
+{
+  "title": "Timber Frame Raising",
+  "description": "Main structure assembly",
+  "date": "2024-12-07",
+  "status": "active",
+  "photos": []
+}
+```
+
+**PUT /api/admin/timeline/:id**
+- Updates existing timeline event
+
+#### 4. Volunteer Schedule
+
+**POST /api/admin/volunteers/build-day**
+```json
+{
+  "dateStart": "2024-12-07",
+  "dateEnd": "2024-12-08",
+  "activity": "Timber Frame Raising",
+  "maxVolunteers": 20,
+  "currentVolunteers": 12,
+  "skillsRequired": "No experience needed"
+}
+```
+
+**GET /api/admin/volunteers/signups/:buildDayId**
+- Returns list of volunteer signups for specific build day
+
+#### 5. Materials & Costs
+
+**POST /api/admin/materials**
+```json
+{
+  "category": "Timber Frame",
+  "budgeted": 18500,
+  "spent": 18500,
+  "status": "paid"
+}
+```
+
+**PUT /api/admin/materials/:id**
+- Updates cost item
+
+#### 6. Live Stream
+
+**POST /api/admin/livestream**
+```json
+{
+  "platform": "youtube",
+  "streamUrl": "https://www.youtube.com/embed/VIDEO_ID",
+  "status": "live",
+  "scheduledDate": "2024-12-07T09:00:00Z"
+}
+```
+
+### Admin Authentication
+
+The admin panel requires authentication. Recommended implementation:
+
+```javascript
+// Backend: Express middleware
+const jwt = require('jsonwebtoken');
+
+function authenticateAdmin(req, res, next) {
+  const token = req.headers.authorization?.split(' ')[1];
+  
+  if (!token) {
+    return res.status(401).json({ error: 'No token provided' });
+  }
+  
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    if (decoded.role !== 'admin') {
+      return res.status(403).json({ error: 'Not authorized' });
+    }
+    req.user = decoded;
+    next();
+  } catch (error) {
+    res.status(401).json({ error: 'Invalid token' });
+  }
+}
+
+// Protect all admin routes
+app.use('/api/admin', authenticateAdmin);
+```
+
+### Admin Panel Features
+
+1. **Dashboard**: Overview stats and recent activity
+2. **Funding Progress**: Manage overall funding and build stage progress
+3. **Project Gallery**: Upload and manage images by build stage
+4. **Build Progress**: Timeline of construction milestones
+5. **Volunteer Schedule**: Manage build days and volunteer signups
+6. **Materials & Costs**: Track expenses and budget allocation
+7. **Live Stream**: Configure streaming platform and schedule
+
+### Security Considerations
+
+- All admin endpoints must require authentication
+- Use HTTPS for all admin API calls
+- Implement CSRF protection
+- Rate limit admin endpoints
+- Log all admin actions for audit trail
+- Use secure session management
+- Implement role-based access control if multiple admin levels needed
+
+## Multi-Language Support
+
+### Translation Management
+
+The website supports English and Romanian. Translations are managed in `script.js`:
+
+```javascript
+const translations = {
+  en: { /* English translations */ },
+  ro: { /* Romanian translations */ }
+};
+```
+
+For dynamic content (from database), implement backend translation:
+
+**GET /api/translations/:language**
+```json
+{
+  "en": {
+    "key": "value"
+  },
+  "ro": {
+    "key": "value"
+  }
+}
+```
+
+### Adding New Languages
+
+1. Add translations to `translations` object in `script.js`
+2. Add language button to navbar in `index.html`
+3. Update `switchLanguage()` function if needed
+4. Test all translatable elements
+
+## Cart and Checkout Flow
+
+### Frontend Flow
+
+1. User selects support tier → `selectTier(amount, tierName)`
+2. Cart section displays with selection
+3. User clicks "Proceed to Checkout" → `proceedToCheckout()`
+4. Payment options displayed
+5. User selects Stripe → `initiateStripePayment()`
+6. Stripe checkout session created
+7. User redirected to Stripe
+8. Payment processed
+9. User redirected back to success page
+
+### Backend Implementation
+
+```javascript
+// Create Stripe checkout session
+app.post('/api/create-checkout-session', async (req, res) => {
+  const { amount, tierName } = req.body;
+  
+  const session = await stripe.checkout.sessions.create({
+    payment_method_types: ['card'],
+    line_items: [{
+      price_data: {
+        currency: 'eur',
+        product_data: {
+          name: `Carpathian Timber Frame - ${tierName}`,
+          description: 'Support tier contribution'
+        },
+        unit_amount: amount * 100, // cents
+      },
+      quantity: 1,
+    }],
+    mode: 'payment',
+    success_url: `${process.env.DOMAIN}/success?session_id={CHECKOUT_SESSION_ID}`,
+    cancel_url: `${process.env.DOMAIN}/#funding`,
+    metadata: {
+      tierName: tierName,
+      projectId: 'carpathian-timber-frame'
+    }
+  });
+  
+  res.json({ sessionId: session.id });
+});
+
+// Webhook to handle successful payments
+app.post('/api/stripe-webhook', async (req, res) => {
+  const sig = req.headers['stripe-signature'];
+  
+  try {
+    const event = stripe.webhooks.constructEvent(
+      req.body,
+      sig,
+      process.env.STRIPE_WEBHOOK_SECRET
+    );
+    
+    if (event.type === 'checkout.session.completed') {
+      const session = event.data.object;
+      
+      // Update funding totals
+      await updateFundingProgress(session);
+      
+      // Send thank you email
+      await sendThankYouEmail(session);
+      
+      // Emit WebSocket event to update live stats
+      io.emit('funding-update', await getFundingStats());
+    }
+    
+    res.json({ received: true });
+  } catch (err) {
+    res.status(400).send(`Webhook Error: ${err.message}`);
+  }
+});
+```
+
+## Real-Time Updates
+
+### WebSocket Integration for Live Stats
+
+```javascript
+// Backend
+const io = require('socket.io')(server, {
+  cors: {
+    origin: process.env.FRONTEND_URL,
+    methods: ['GET', 'POST']
+  }
+});
+
+io.on('connection', (socket) => {
+  console.log('Client connected');
+  
+  // Send current stats
+  socket.emit('funding-update', getCurrentFundingStats());
+  
+  socket.on('disconnect', () => {
+    console.log('Client disconnected');
+  });
+});
+
+// When admin updates stats or payment received
+function broadcastFundingUpdate(stats) {
+  io.emit('funding-update', stats);
+}
+```
+
+```javascript
+// Frontend (add to script.js)
+const socket = io('wss://your-backend-url');
+
+socket.on('funding-update', (data) => {
+  document.getElementById('raisedAmount').textContent = `€ ${data.raised.toLocaleString()}`;
+  document.getElementById('supporterCount').textContent = data.supporters;
+  document.getElementById('daysLeft').textContent = data.daysRemaining;
+  
+  const percentage = Math.round((data.raised / 85000) * 100);
+  document.getElementById('progressPercent').textContent = percentage;
+  document.getElementById('progressFill').style.width = percentage + '%';
+  
+  updateChart(data.raised, 85000 - data.raised);
+});
+```
 
 ## Recommended Tech Stack
 
