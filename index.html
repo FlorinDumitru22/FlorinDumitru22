@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Finance your dream home in the Carpathian Mountains - flexible financing options for mountain house construction">
+    <title>Carpathian Mountain Home Financing</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <h1>🏔️ Carpathian Home Financing</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#calculator">Calculator</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Build Your Dream Home in the Carpathian Mountains</h1>
+            <p class="hero-subtitle">Flexible financing solutions for your mountain sanctuary</p>
+            <a href="#calculator" class="cta-button">Calculate Your Financing</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">Why Build in the Carpathians?</h2>
+            <div class="about-grid">
+                <div class="about-card">
+                    <div class="icon">🌲</div>
+                    <h3>Natural Beauty</h3>
+                    <p>Surrounded by pristine forests, stunning peaks, and clean mountain air. The Carpathians offer unparalleled natural beauty and tranquility.</p>
+                </div>
+                <div class="about-card">
+                    <div class="icon">💰</div>
+                    <h3>Affordable Financing</h3>
+                    <p>Our flexible financing options make your dream home accessible. Competitive rates starting from 3.5% APR with terms up to 30 years.</p>
+                </div>
+                <div class="about-card">
+                    <div class="icon">🏡</div>
+                    <h3>Custom Building</h3>
+                    <p>Work with local craftsmen who understand mountain construction. Build a home that perfectly suits your lifestyle and the environment.</p>
+                </div>
+                <div class="about-card">
+                    <div class="icon">📈</div>
+                    <h3>Investment Value</h3>
+                    <p>Property values in the Carpathian region continue to grow. Build equity while enjoying your mountain retreat.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Financing Calculator Section -->
+    <section id="calculator" class="calculator-section">
+        <div class="container">
+            <h2 class="section-title">Financing Calculator</h2>
+            <p class="section-subtitle">Estimate your monthly payments and plan your mountain home build</p>
+            
+            <div class="calculator-wrapper">
+                <div class="calculator-inputs">
+                    <div class="input-group">
+                        <label for="homePrice">Home Build Cost (€)</label>
+                        <input type="number" id="homePrice" value="150000" min="50000" max="1000000" step="5000">
+                        <input type="range" id="homePriceRange" value="150000" min="50000" max="1000000" step="5000">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="downPayment">Down Payment (%)</label>
+                        <input type="number" id="downPayment" value="20" min="10" max="50" step="5">
+                        <input type="range" id="downPaymentRange" value="20" min="10" max="50" step="5">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="interestRate">Interest Rate (%)</label>
+                        <input type="number" id="interestRate" value="3.5" min="1" max="10" step="0.1">
+                        <input type="range" id="interestRateRange" value="3.5" min="1" max="10" step="0.1">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="loanTerm">Loan Term (years)</label>
+                        <input type="number" id="loanTerm" value="25" min="5" max="30" step="1">
+                        <input type="range" id="loanTermRange" value="25" min="5" max="30" step="1">
+                    </div>
+
+                    <button class="calculate-btn" onclick="calculateLoan()">Calculate Payment</button>
+                </div>
+
+                <div class="calculator-results">
+                    <div class="result-card">
+                        <h3>Monthly Payment</h3>
+                        <p class="result-value" id="monthlyPayment">€ 0</p>
+                    </div>
+                    <div class="result-card">
+                        <h3>Total Loan Amount</h3>
+                        <p class="result-value" id="loanAmount">€ 0</p>
+                    </div>
+                    <div class="result-card">
+                        <h3>Down Payment</h3>
+                        <p class="result-value" id="downPaymentAmount">€ 0</p>
+                    </div>
+                    <div class="result-card">
+                        <h3>Total Interest Paid</h3>
+                        <p class="result-value" id="totalInterest">€ 0</p>
+                    </div>
+                    <div class="result-card">
+                        <h3>Total Amount Paid</h3>
+                        <p class="result-value" id="totalAmount">€ 0</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <canvas id="paymentChart"></canvas>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery">
+        <div class="container">
+            <h2 class="section-title">Carpathian Mountain Homes</h2>
+            <p class="section-subtitle">Get inspired by mountain architecture</p>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <div class="gallery-placeholder" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                        <p>Traditional Carpathian Chalet</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-placeholder" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                        <p>Modern Mountain Villa</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-placeholder" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                        <p>Wooden Mountain Retreat</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-placeholder" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
+                        <p>Alpine Style Home</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-placeholder" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+                        <p>Luxury Mountain Estate</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-placeholder" style="background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);">
+                        <p>Eco-Friendly Mountain Home</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Our Financing Benefits</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">✓</div>
+                    <h3>No Hidden Fees</h3>
+                    <p>Transparent pricing with no surprise charges</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">✓</div>
+                    <h3>Fast Approval</h3>
+                    <p>Get approved in as little as 24 hours</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">✓</div>
+                    <h3>Flexible Terms</h3>
+                    <p>Choose from 5 to 30 year loan terms</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">✓</div>
+                    <h3>Expert Support</h3>
+                    <p>Dedicated financing advisors throughout the process</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Start Your Journey Today</h2>
+            <p class="section-subtitle">Get in touch with our financing specialists</p>
+            
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <h3>📞 Phone</h3>
+                        <p>+40 123 456 789</p>
+                    </div>
+                    <div class="contact-item">
+                        <h3>📧 Email</h3>
+                        <p>info@carpathianfinancing.com</p>
+                    </div>
+                    <div class="contact-item">
+                        <h3>📍 Office</h3>
+                        <p>Strada Carpați nr. 1<br>Brașov, Romania</p>
+                    </div>
+                    <div class="contact-item">
+                        <h3>🕐 Hours</h3>
+                        <p>Monday - Friday: 9:00 - 18:00<br>Saturday: 10:00 - 14:00</p>
+                    </div>
+                </div>
+
+                <form class="contact-form" onsubmit="handleSubmit(event)">
+                    <div class="form-group">
+                        <input type="text" id="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" id="phone" placeholder="Your Phone">
+                    </div>
+                    <div class="form-group">
+                        <select id="interest">
+                            <option value="">I'm interested in...</option>
+                            <option value="financing">Financing Information</option>
+                            <option value="building">Building a New Home</option>
+                            <option value="consultation">Free Consultation</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" rows="5" placeholder="Tell us about your project..." required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Carpathian Home Financing</h3>
+                    <p>Building dreams in the mountains since 2020</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#calculator">Calculator</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Licensing</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <div class="social-links">
+                        <a href="#">Facebook</a>
+                        <a href="#">Instagram</a>
+                        <a href="#">LinkedIn</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Carpathian Home Financing. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
