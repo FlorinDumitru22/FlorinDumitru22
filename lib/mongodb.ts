@@ -1,5 +1,28 @@
 import mongoose from 'mongoose'
 
+/**
+ * MongoDB Connection Handler
+ * 
+ * This file handles MongoDB connections using Mongoose with connection pooling.
+ * The MONGODB_URI environment variable is required and should be set in your .env file.
+ * 
+ * Connection String Format:
+ * mongodb+srv://<username>:<password>@<cluster>.mongodb.net/?appName=<appName>
+ * 
+ * Files that use this connection:
+ * - app/api/admin/funding/route.ts
+ * - app/api/auth/change-password/route.ts
+ * - app/api/auth/login/route.ts
+ * - app/api/auth/me/route.ts
+ * - app/api/funding/route.ts
+ * - app/api/stripe/webhook/route.ts
+ * - app/api/volunteers/route.ts
+ * 
+ * Note: Mongoose automatically uses MongoDB's Stable API (v1) when connecting
+ * to MongoDB Atlas clusters (mongodb+srv://). For additional Stable API configuration,
+ * you can add serverApi options to the mongoose.connect() call.
+ */
+
 const MONGODB_URI = process.env.MONGODB_URI!
 
 if (!MONGODB_URI) {

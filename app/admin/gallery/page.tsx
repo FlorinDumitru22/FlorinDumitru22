@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { galleryImageSchema, type GalleryImageInput } from '@/lib/validations';
+import Image from 'next/image';
 
 interface GalleryImage extends GalleryImageInput {
   _id: string;
@@ -155,9 +156,11 @@ export default function GalleryManager() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {images.map((image) => (
                 <div key={image._id} className="border rounded-lg overflow-hidden">
-                  <img
+                  <Image
                     src={image.imageUrl}
                     alt={image.title}
+                    width={400}
+                    height={300}
                     className="w-full h-48 object-cover"
                   />
                   <div className="p-4">
