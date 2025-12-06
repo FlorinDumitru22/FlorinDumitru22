@@ -204,8 +204,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Update funding progress on page load
     updateFundingProgress();
     
+    // Initialize materials chart
+    initMaterialsChart();
+    
     // Add animation classes
-    const animatedElements = document.querySelectorAll('.about-card, .gallery-item, .feature-item, .stat-card, .tier-card');
+    const animatedElements = document.querySelectorAll('.about-card, .gallery-item, .feature-item, .stat-card, .tier-card, .update-card, .timeline-item');
     animatedElements.forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(30px)';
@@ -219,6 +222,220 @@ document.addEventListener('DOMContentLoaded', () => {
         clearTimeout(resizeTimer);
         resizeTimer = setTimeout(() => {
             updateFundingProgress();
+            initMaterialsChart();
         }, 250);
     });
+    
+    // Load current language
+    const savedLang = localStorage.getItem('language') || 'en';
+    switchLanguage(savedLang);
 });
+
+// Multi-language Support
+const translations = {
+    en: {
+        'nav.home': 'Home',
+        'nav.about': 'About',
+        'nav.funding': 'Funding',
+        'nav.updates': 'Updates',
+        'nav.progress': 'Progress',
+        'nav.volunteer': 'Volunteer',
+        'nav.support': 'Support',
+        'hero.title': 'Crowdsourced Off-Grid Timber Frame House',
+        'hero.subtitle': 'Join us in building a sustainable off-grid home in the Carpathian Mountains',
+        'hero.cta': 'Support Our Project',
+        'features.title': 'Project Features',
+        'features.transparent': '100% Transparent',
+        'features.transparent_desc': 'Every euro tracked and shared publicly with regular updates',
+        'features.community': 'Community Driven',
+        'features.community_desc': 'Built by volunteers and supporters who share our vision',
+        'features.educational': 'Educational',
+        'features.educational_desc': 'Workshops and tutorials on sustainable off-grid living',
+        'features.opensource': 'Open Source',
+        'features.opensource_desc': 'Plans and learnings shared freely with the community',
+        'updates.title': 'Project Updates',
+        'updates.subtitle': 'Latest news from the build site',
+        'progress.title': 'Build Progress',
+        'progress.subtitle': 'Watch our timber frame house come to life',
+        'progress.livestream': 'Live from the Build Site',
+        'volunteer.title': 'Volunteer Schedule',
+        'volunteer.subtitle': 'Join us on the build site',
+        'materials.title': 'Materials & Costs',
+        'materials.subtitle': 'Transparent breakdown of project expenses'
+    },
+    ro: {
+        'nav.home': 'Acasă',
+        'nav.about': 'Despre',
+        'nav.funding': 'Finanțare',
+        'nav.updates': 'Noutăți',
+        'nav.progress': 'Progres',
+        'nav.volunteer': 'Voluntariat',
+        'nav.support': 'Susține',
+        'hero.title': 'Casă din Lemn Off-Grid Finanțată de Comunitate',
+        'hero.subtitle': 'Alătură-te nouă în construirea unei case sustenabile off-grid în Munții Carpați',
+        'hero.cta': 'Susține Proiectul',
+        'features.title': 'Caracteristici Proiect',
+        'features.transparent': '100% Transparent',
+        'features.transparent_desc': 'Fiecare euro urmărit și partajat public cu actualizări regulate',
+        'features.community': 'Condus de Comunitate',
+        'features.community_desc': 'Construit de voluntari și susținători care împărtășesc viziunea noastră',
+        'features.educational': 'Educațional',
+        'features.educational_desc': 'Ateliere și tutoriale despre viața sustenabilă off-grid',
+        'features.opensource': 'Sursă Deschisă',
+        'features.opensource_desc': 'Planuri și învățături partajate liber cu comunitatea',
+        'updates.title': 'Actualizări Proiect',
+        'updates.subtitle': 'Ultimele știri de la șantier',
+        'progress.title': 'Progres Construcție',
+        'progress.subtitle': 'Urmărește cum prinde viață casa noastră din lemn',
+        'progress.livestream': 'Live de la Șantier',
+        'volunteer.title': 'Program Voluntariat',
+        'volunteer.subtitle': 'Alătură-te nouă la șantier',
+        'materials.title': 'Materiale & Costuri',
+        'materials.subtitle': 'Detaliere transparentă a cheltuielilor proiectului'
+    }
+};
+
+function switchLanguage(lang) {
+    localStorage.setItem('language', lang);
+    document.documentElement.setAttribute('data-lang', lang);
+    
+    // Update active button
+    document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+    document.getElementById(`lang-${lang}`).classList.add('active');
+    
+    // Update all translatable elements
+    document.querySelectorAll('[data-translate]').forEach(element => {
+        const key = element.getAttribute('data-translate');
+        if (translations[lang] && translations[lang][key]) {
+            element.textContent = translations[lang][key];
+        }
+    });
+}
+
+// Payment Integration (Stripe)
+let selectedTierAmount = 0;
+
+function selectTier(amount) {
+    selectedTierAmount = amount;
+    showNotification(`Selected €${amount} tier. Choose a payment method below.`);
+    // Scroll to payment section
+    document.querySelector('.payment-section').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function initiateStripePayment() {
+    if (selectedTierAmount === 0) {
+        showNotification('Please select a support tier first.');
+        return;
+    }
+    
+    // In production, this would create a Stripe checkout session
+    showNotification(`Stripe payment of €${selectedTierAmount} would be processed here. Backend integration required.`);
+    
+    // Placeholder for actual Stripe integration:
+    // const stripe = Stripe('your_publishable_key');
+    // fetch('/create-checkout-session', {
+    //     method: 'POST',
+    //     headers: { 'Content-Type': 'application/json' },
+    //     body: JSON.stringify({ amount: selectedTierAmount })
+    // })
+    // .then(response => response.json())
+    // .then(session => stripe.redirectToCheckout({ sessionId: session.id }));
+}
+
+function initiatePayPalPayment() {
+    if (selectedTierAmount === 0) {
+        showNotification('Please select a support tier first.');
+        return;
+    }
+    
+    showNotification(`PayPal payment of €${selectedTierAmount} would be processed here. Backend integration required.`);
+    
+    // Placeholder for PayPal integration
+    // paypal.Buttons({ ... }).render('#paypal-button-container');
+}
+
+function showBankDetails() {
+    const detailsDiv = document.getElementById('payment-details');
+    detailsDiv.style.display = 'block';
+    detailsDiv.innerHTML = `
+        <h4>Bank Transfer Details</h4>
+        <p><strong>Bank:</strong> BCR Romania</p>
+        <p><strong>IBAN:</strong> RO49RNCB0000000000000001</p>
+        <p><strong>Swift/BIC:</strong> RNCBROBU</p>
+        <p><strong>Account Name:</strong> Carpathian Timber Frame Project</p>
+        <p><strong>Amount:</strong> €${selectedTierAmount || '___'}</p>
+        <p><strong>Reference:</strong> Your name + tier level</p>
+        <p class="note">Please email us at hello@carpathiantimber.org after making the transfer.</p>
+    `;
+}
+
+// Materials Cost Chart
+function initMaterialsChart() {
+    const canvas = document.getElementById('materialsChart');
+    if (!canvas) return;
+    
+    const ctx = canvas.getContext('2d');
+    canvas.width = canvas.offsetWidth;
+    canvas.height = 300;
+    
+    const costs = [
+        { label: 'Timber', amount: 18500, color: '#8B4513' },
+        { label: 'Solar', amount: 15000, color: '#FFD700' },
+        { label: 'Foundation', amount: 12000, color: '#696969' },
+        { label: 'Roof', amount: 9000, color: '#B22222' },
+        { label: 'Windows', amount: 0, color: '#87CEEB' },
+        { label: 'Systems', amount: 0, color: '#32CD32' }
+    ];
+    
+    const total = costs.reduce((sum, item) => sum + item.amount, 1);
+    let startAngle = 0;
+    
+    costs.forEach(item => {
+        const sliceAngle = (item.amount / total) * 2 * Math.PI;
+        
+        // Draw slice
+        ctx.fillStyle = item.color;
+        ctx.beginPath();
+        ctx.moveTo(canvas.width / 2, canvas.height / 2);
+        ctx.arc(canvas.width / 2, canvas.height / 2, 120, startAngle, startAngle + sliceAngle);
+        ctx.closePath();
+        ctx.fill();
+        
+        // Draw label
+        if (item.amount > 0) {
+            const labelAngle = startAngle + sliceAngle / 2;
+            const labelX = canvas.width / 2 + Math.cos(labelAngle) * 80;
+            const labelY = canvas.height / 2 + Math.sin(labelAngle) * 80;
+            
+            ctx.fillStyle = '#fff';
+            ctx.font = 'bold 12px Montserrat';
+            ctx.textAlign = 'center';
+            ctx.fillText(item.label, labelX, labelY);
+        }
+        
+        startAngle += sliceAngle;
+    });
+}
+
+// Volunteer Signup
+function signupForBuildDay(date) {
+    showNotification(`Volunteer signup for ${date} would open here. Backend integration required for scheduling.`);
+    // In production, this would open a form to collect volunteer details
+}
+
+// Live Stream Notification
+document.querySelectorAll('.notify-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        showNotification('You\'ll receive an email notification before the next live stream!');
+    });
+});
+
+// Signup buttons
+document.querySelectorAll('.signup-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        if (!e.target.disabled) {
+            showNotification('Volunteer registration would open here. Backend integration required.');
+        }
+    });
+});
+
