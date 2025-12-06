@@ -98,6 +98,15 @@ function showNotification(message, type = 'success') {
 
 // Initialize page
 document.addEventListener('DOMContentLoaded', () => {
+    // Check if user is logged in
+    const isLoggedIn = localStorage.getItem('adminLoggedIn') === 'true';
+    
+    if (!isLoggedIn) {
+        showLoginModal();
+    } else {
+        hideLoginModal();
+    }
+    
     // Load saved funding data if exists
     const savedFunding = localStorage.getItem('fundingData');
     if (savedFunding) {
@@ -122,7 +131,77 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     });
+    
+    // Logout handler
+    document.querySelector('.logout-btn')?.addEventListener('click', handleLogout);
 });
+
+// Login Modal Functions
+function showLoginModal() {
+    const modal = document.getElementById('loginModal');
+    if (modal) {
+        modal.classList.remove('hidden');
+    }
+}
+
+function hideLoginModal() {
+    const modal = document.getElementById('loginModal');
+    if (modal) {
+        modal.classList.add('hidden');
+    }
+}
+
+function handleAdminLogin(event) {
+    event.preventDefault();
+    
+    const username = document.getElementById('adminUsername').value;
+    const password = document.getElementById('adminPassword').value;
+    const rememberMe = document.getElementById('rememberMe').checked;
+    
+    // Demo authentication - in production, this should validate against backend
+    // Default credentials: admin / admin123
+    if (username === 'admin' && password === 'admin123') {
+        localStorage.setItem('adminLoggedIn', 'true');
+        if (rememberMe) {
+            localStorage.setItem('adminRememberMe', 'true');
+        }
+        hideLoginModal();
+        showNotification('Login successful! Welcome to the admin panel.', 'success');
+    } else {
+        showNotification('Invalid username or password. Try: admin / admin123', 'error');
+    }
+    
+    // In production, implement proper authentication:
+    /*
+    fetch('/api/admin/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            localStorage.setItem('adminToken', data.token);
+            localStorage.setItem('adminLoggedIn', 'true');
+            hideLoginModal();
+            showNotification('Login successful!', 'success');
+        } else {
+            showNotification('Invalid credentials', 'error');
+        }
+    })
+    .catch(error => {
+        showNotification('Login failed. Please try again.', 'error');
+    });
+    */
+}
+
+function handleLogout() {
+    localStorage.removeItem('adminLoggedIn');
+    localStorage.removeItem('adminToken');
+    localStorage.removeItem('adminRememberMe');
+    showLoginModal();
+    showNotification('Logged out successfully.', 'success');
+}
 
 // Gallery Upload Handler (Demo)
 function uploadGalleryImage() {
