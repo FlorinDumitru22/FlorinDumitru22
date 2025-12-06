@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Crowdsourced off-grid timber frame house in the Carpathian Mountains - Join our community building project">
+    <title>Carpathian Timber Frame - Crowdsourced Off-Grid Project</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <h1>🌲 Carpathian Timber Frame</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home" data-translate="nav.home">Home</a></li>
+                <li><a href="#about" data-translate="nav.about">About</a></li>
+                <li><a href="#funding" data-translate="nav.funding">Funding</a></li>
+                <li><a href="#updates" data-translate="nav.updates">Updates</a></li>
+                <li><a href="#progress" data-translate="nav.progress">Progress</a></li>
+                <li><a href="#volunteer" data-translate="nav.volunteer">Volunteer</a></li>
+                <li><a href="#support" data-translate="nav.support">Support</a></li>
+            </ul>
+            <div class="lang-switcher">
+                <button onclick="switchLanguage('en')" class="lang-btn active" id="lang-en">EN</button>
+                <button onclick="switchLanguage('ro')" class="lang-btn" id="lang-ro">RO</button>
+            </div>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Crowdsourced Off-Grid Timber Frame House</h1>
+            <p class="hero-subtitle">Join us in building a sustainable off-grid home in the Carpathian Mountains</p>
+            <a href="#funding" class="cta-button">Support Our Project</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About Our Project</h2>
+            <div class="about-grid">
+                <div class="about-card">
+                    <div class="icon">🌲</div>
+                    <h3>Timber Frame Construction</h3>
+                    <p>Traditional timber frame building using locally sourced wood from sustainable Carpathian forests. A timeless construction method that's both beautiful and durable.</p>
+                </div>
+                <div class="about-card">
+                    <div class="icon">⚡</div>
+                    <h3>Off-Grid Living</h3>
+                    <p>Completely self-sufficient with solar panels, rainwater harvesting, and natural heating systems. Living in harmony with nature.</p>
+                </div>
+                <div class="about-card">
+                    <div class="icon">🤝</div>
+                    <h3>Community Crowdsourced</h3>
+                    <p>Built by and for the community. Your contribution helps create a demonstration of sustainable living and inspires others to follow.</p>
+                </div>
+                <div class="about-card">
+                    <div class="icon">🌍</div>
+                    <h3>Eco-Friendly Design</h3>
+                    <p>Minimal environmental impact using natural materials, passive solar design, and renewable energy. A blueprint for sustainable mountain living.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Funding Progress Section -->
+    <section id="funding" class="calculator-section">
+        <div class="container">
+            <h2 class="section-title">Crowdfunding Progress</h2>
+            <p class="section-subtitle">Help us build this sustainable off-grid timber frame home</p>
+            
+            <div class="funding-stats">
+                <div class="stat-card">
+                    <h3>Total Goal</h3>
+                    <p class="stat-value">€ 85,000</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Raised So Far</h3>
+                    <p class="stat-value" id="raisedAmount">€ 32,450</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Supporters</h3>
+                    <p class="stat-value" id="supporterCount">147</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Days Remaining</h3>
+                    <p class="stat-value" id="daysLeft">68</p>
+                </div>
+            </div>
+
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <p class="progress-text"><span id="progressPercent">38</span>% funded</p>
+            </div>
+
+            <div class="funding-tiers">
+                <h3 class="tiers-title">Support Tiers</h3>
+                <div class="tiers-grid">
+                    <div class="tier-card">
+                        <h4>Seed Supporter</h4>
+                        <p class="tier-amount">€ 25</p>
+                        <ul>
+                            <li>Project updates via email</li>
+                            <li>Name on supporter wall</li>
+                            <li>Digital thank you card</li>
+                        </ul>
+                        <button class="tier-btn" onclick="selectTier(25)">Choose Tier</button>
+                    </div>
+                    <div class="tier-card featured">
+                        <h4>Timber Friend</h4>
+                        <p class="tier-amount">€ 100</p>
+                        <ul>
+                            <li>All Seed Supporter benefits</li>
+                            <li>Invitation to build events</li>
+                            <li>Photo with completed house</li>
+                            <li>Personalized timber beam</li>
+                        </ul>
+                        <button class="tier-btn" onclick="selectTier(100)">Choose Tier</button>
+                    </div>
+                    <div class="tier-card">
+                        <h4>Forest Guardian</h4>
+                        <p class="tier-amount">€ 500</p>
+                        <ul>
+                            <li>All Timber Friend benefits</li>
+                            <li>Weekend stay in completed house</li>
+                            <li>Workshop on timber framing</li>
+                            <li>Commemorative plaque</li>
+                        </ul>
+                        <button class="tier-btn" onclick="selectTier(500)">Choose Tier</button>
+                    </div>
+                    <div class="tier-card">
+                        <h4>Mountain Builder</h4>
+                        <p class="tier-amount">€ 1,500</p>
+                        <ul>
+                            <li>All Forest Guardian benefits</li>
+                            <li>Week-long stay privilege</li>
+                            <li>Hands-on building experience</li>
+                            <li>Name on foundation stone</li>
+                        </ul>
+                        <button class="tier-btn" onclick="selectTier(1500)">Choose Tier</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Payment Integration -->
+            <div class="payment-section">
+                <h3 class="tiers-title">Payment Options</h3>
+                <div class="payment-methods">
+                    <button class="payment-btn stripe-btn" onclick="initiateStripePayment()">
+                        <span class="payment-icon">💳</span>
+                        <span>Pay with Card (Stripe)</span>
+                    </button>
+                    <button class="payment-btn paypal-btn" onclick="initiatePayPalPayment()">
+                        <span class="payment-icon">🅿️</span>
+                        <span>Pay with PayPal</span>
+                    </button>
+                    <button class="payment-btn bank-btn" onclick="showBankDetails()">
+                        <span class="payment-icon">🏦</span>
+                        <span>Bank Transfer</span>
+                    </button>
+                </div>
+                <div id="payment-details" class="payment-details" style="display: none;"></div>
+                <p class="payment-note">All payments are secure and encrypted. You'll receive a confirmation email with your supporter benefits.</p>
+            </div>
+
+            <div class="chart-container">
+                <canvas id="paymentChart"></canvas>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery">
+        <div class="container">
+            <h2 class="section-title">Project Gallery</h2>
+            <p class="section-subtitle">Timber frame design and off-grid features</p>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <div class="gallery-placeholder" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                        <p>Timber Frame Design</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-placeholder" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                        <p>Solar Panel System</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-placeholder" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                        <p>Rainwater Collection</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-placeholder" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
+                        <p>Natural Heating System</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-placeholder" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+                        <p>Building Site Location</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-placeholder" style="background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);">
+                        <p>Community Build Day</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title" data-translate="features.title">Project Features</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">✓</div>
+                    <h3 data-translate="features.transparent">100% Transparent</h3>
+                    <p data-translate="features.transparent_desc">Every euro tracked and shared publicly with regular updates</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">✓</div>
+                    <h3 data-translate="features.community">Community Driven</h3>
+                    <p data-translate="features.community_desc">Built by volunteers and supporters who share our vision</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">✓</div>
+                    <h3 data-translate="features.educational">Educational</h3>
+                    <p data-translate="features.educational_desc">Workshops and tutorials on sustainable off-grid living</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">✓</div>
+                    <h3 data-translate="features.opensource">Open Source</h3>
+                    <p data-translate="features.opensource_desc">Plans and learnings shared freely with the community</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog/Updates Section -->
+    <section id="updates" class="updates-section">
+        <div class="container">
+            <h2 class="section-title" data-translate="updates.title">Project Updates</h2>
+            <p class="section-subtitle" data-translate="updates.subtitle">Latest news from the build site</p>
+            
+            <div class="updates-grid">
+                <article class="update-card">
+                    <div class="update-date">Dec 1, 2024</div>
+                    <h3>Foundation Complete!</h3>
+                    <p>We've finished laying the foundation for our timber frame house. The concrete has cured perfectly, and we're ready for the timber frame raising next week.</p>
+                    <a href="#" class="read-more">Read More →</a>
+                </article>
+                <article class="update-card">
+                    <div class="update-date">Nov 25, 2024</div>
+                    <h3>Solar Panels Ordered</h3>
+                    <p>Thanks to our amazing supporters, we've ordered a 10kW solar panel system with battery storage. Installation scheduled for January.</p>
+                    <a href="#" class="read-more">Read More →</a>
+                </article>
+                <article class="update-card">
+                    <div class="update-date">Nov 18, 2024</div>
+                    <h3>Community Build Weekend Success</h3>
+                    <p>Over 30 volunteers joined us for the foundation prep. Amazing community spirit and we're ahead of schedule!</p>
+                    <a href="#" class="read-more">Read More →</a>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Build Progress Gallery -->
+    <section id="progress" class="progress-gallery">
+        <div class="container">
+            <h2 class="section-title" data-translate="progress.title">Build Progress</h2>
+            <p class="section-subtitle" data-translate="progress.subtitle">Watch our timber frame house come to life</p>
+            
+            <div class="progress-timeline">
+                <div class="timeline-item completed">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h4>Site Preparation - Completed</h4>
+                        <p>Land cleared, access road built</p>
+                        <div class="progress-photos">
+                            <div class="progress-photo" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                                <span>Site Before</span>
+                            </div>
+                            <div class="progress-photo" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                                <span>Land Cleared</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item completed">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h4>Foundation - Completed</h4>
+                        <p>Concrete foundation laid and cured</p>
+                        <div class="progress-photos">
+                            <div class="progress-photo" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                                <span>Foundation Forms</span>
+                            </div>
+                            <div class="progress-photo" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
+                                <span>Concrete Pour</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item active">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h4>Timber Frame - In Progress</h4>
+                        <p>Timber delivery and frame raising</p>
+                        <div class="progress-badge">Current Phase</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h4>Roof & Walls - Upcoming</h4>
+                        <p>Roof installation and wall panels</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h4>Off-Grid Systems - Planned</h4>
+                        <p>Solar, water, heating installation</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Live Stream Section -->
+            <div class="livestream-section">
+                <h3 data-translate="progress.livestream">Live from the Build Site</h3>
+                <div class="stream-container">
+                    <div class="stream-placeholder">
+                        <div class="stream-icon">📹</div>
+                        <p>Live stream will start during build days</p>
+                        <p class="stream-schedule">Next stream: Saturday, Dec 7 @ 9:00 AM</p>
+                        <button class="notify-btn">Notify Me</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Volunteer Scheduling -->
+    <section id="volunteer" class="volunteer-section">
+        <div class="container">
+            <h2 class="section-title" data-translate="volunteer.title">Volunteer Schedule</h2>
+            <p class="section-subtitle" data-translate="volunteer.subtitle">Join us on the build site</p>
+            
+            <div class="volunteer-wrapper">
+                <div class="volunteer-calendar">
+                    <h3>Upcoming Build Days</h3>
+                    <div class="build-days">
+                        <div class="build-day">
+                            <div class="day-header">
+                                <span class="day-date">Dec 7-8</span>
+                                <span class="day-status available">Spots Available</span>
+                            </div>
+                            <div class="day-info">
+                                <p><strong>Activity:</strong> Timber Frame Raising</p>
+                                <p><strong>Volunteers:</strong> 12/20</p>
+                                <p><strong>Skills:</strong> No experience needed</p>
+                                <button class="signup-btn">Sign Up</button>
+                            </div>
+                        </div>
+                        <div class="build-day">
+                            <div class="day-header">
+                                <span class="day-date">Dec 14-15</span>
+                                <span class="day-status available">Spots Available</span>
+                            </div>
+                            <div class="day-info">
+                                <p><strong>Activity:</strong> Roof Panel Prep</p>
+                                <p><strong>Volunteers:</strong> 8/15</p>
+                                <p><strong>Skills:</strong> Woodworking helpful</p>
+                                <button class="signup-btn">Sign Up</button>
+                            </div>
+                        </div>
+                        <div class="build-day">
+                            <div class="day-header">
+                                <span class="day-date">Dec 21-22</span>
+                                <span class="day-status full">Fully Booked</span>
+                            </div>
+                            <div class="day-info">
+                                <p><strong>Activity:</strong> Workshop Day</p>
+                                <p><strong>Volunteers:</strong> 25/25</p>
+                                <p><strong>Skills:</strong> All levels welcome</p>
+                                <button class="signup-btn" disabled>Waitlist</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="volunteer-info">
+                    <h3>What to Expect</h3>
+                    <ul>
+                        <li>8:00 AM - 5:00 PM build days</li>
+                        <li>Lunch and refreshments provided</li>
+                        <li>Safety equipment supplied</li>
+                        <li>Expert instruction included</li>
+                        <li>Accommodation available nearby</li>
+                    </ul>
+                    <div class="volunteer-stats">
+                        <div class="stat">
+                            <div class="stat-num">87</div>
+                            <div class="stat-label">Total Volunteers</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-num">340</div>
+                            <div class="stat-label">Volunteer Hours</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Materials Cost Tracker -->
+    <section class="materials-section">
+        <div class="container">
+            <h2 class="section-title" data-translate="materials.title">Materials & Costs</h2>
+            <p class="section-subtitle" data-translate="materials.subtitle">Transparent breakdown of project expenses</p>
+            
+            <div class="materials-grid">
+                <div class="materials-chart">
+                    <h3>Budget Allocation</h3>
+                    <canvas id="materialsChart"></canvas>
+                </div>
+                
+                <div class="materials-breakdown">
+                    <h3>Detailed Costs</h3>
+                    <div class="cost-items">
+                        <div class="cost-item">
+                            <div class="cost-info">
+                                <span class="cost-category">Timber Frame</span>
+                                <span class="cost-status">Paid ✓</span>
+                            </div>
+                            <div class="cost-bar">
+                                <div class="cost-fill" style="width: 100%"></div>
+                            </div>
+                            <div class="cost-amount">€18,500 / €18,500</div>
+                        </div>
+                        <div class="cost-item">
+                            <div class="cost-info">
+                                <span class="cost-category">Solar Panels & Batteries</span>
+                                <span class="cost-status">Paid ✓</span>
+                            </div>
+                            <div class="cost-bar">
+                                <div class="cost-fill" style="width: 100%"></div>
+                            </div>
+                            <div class="cost-amount">€15,000 / €15,000</div>
+                        </div>
+                        <div class="cost-item">
+                            <div class="cost-info">
+                                <span class="cost-category">Foundation & Site Work</span>
+                                <span class="cost-status">Paid ✓</span>
+                            </div>
+                            <div class="cost-bar">
+                                <div class="cost-fill" style="width: 100%"></div>
+                            </div>
+                            <div class="cost-amount">€12,000 / €12,000</div>
+                        </div>
+                        <div class="cost-item">
+                            <div class="cost-info">
+                                <span class="cost-category">Roof & Insulation</span>
+                                <span class="cost-status">In Progress</span>
+                            </div>
+                            <div class="cost-bar">
+                                <div class="cost-fill" style="width: 60%"></div>
+                            </div>
+                            <div class="cost-amount">€9,000 / €15,000</div>
+                        </div>
+                        <div class="cost-item">
+                            <div class="cost-info">
+                                <span class="cost-category">Windows & Doors</span>
+                                <span class="cost-status">Pending</span>
+                            </div>
+                            <div class="cost-bar">
+                                <div class="cost-fill" style="width: 0%"></div>
+                            </div>
+                            <div class="cost-amount">€0 / €10,000</div>
+                        </div>
+                        <div class="cost-item">
+                            <div class="cost-info">
+                                <span class="cost-category">Water & Heating Systems</span>
+                                <span class="cost-status">Pending</span>
+                            </div>
+                            <div class="cost-bar">
+                                <div class="cost-fill" style="width: 0%"></div>
+                            </div>
+                            <div class="cost-amount">€0 / €14,500</div>
+                        </div>
+                    </div>
+                    <div class="materials-total">
+                        <strong>Total Spent:</strong> €54,500 / €85,000
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="support" class="contact">
+        <div class="container">
+            <h2 class="section-title">Join Our Community</h2>
+            <p class="section-subtitle">Get involved in building this sustainable project</p>
+            
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <h3>📧 Email</h3>
+                        <p>hello@carpathiantimber.org</p>
+                    </div>
+                    <div class="contact-item">
+                        <h3>📍 Project Location</h3>
+                        <p>Carpathian Mountains<br>Brașov County, Romania</p>
+                    </div>
+                    <div class="contact-item">
+                        <h3>🌐 Social Media</h3>
+                        <p>@CarpathianTimber<br>Follow our progress!</p>
+                    </div>
+                    <div class="contact-item">
+                        <h3>🛠️ Build Days</h3>
+                        <p>Weekends & Holidays<br>Join the building team!</p>
+                    </div>
+                </div>
+
+                <form class="contact-form" onsubmit="handleSubmit(event)">
+                    <div class="form-group">
+                        <input type="text" id="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" id="phone" placeholder="Your Phone">
+                    </div>
+                    <div class="form-group">
+                        <select id="interest" required>
+                            <option value="" disabled selected>I want to...</option>
+                            <option value="support">Support Financially</option>
+                            <option value="volunteer">Volunteer to Build</option>
+                            <option value="visit">Visit the Project</option>
+                            <option value="updates">Get Updates</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" rows="5" placeholder="Tell us how you'd like to get involved..." required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Join the Project</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Carpathian Timber Frame</h3>
+                    <p>Community-driven off-grid sustainable living since 2024</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#funding">Funding</a></li>
+                        <li><a href="#support">Support Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Project Updates</a></li>
+                        <li><a href="#">Building Plans</a></li>
+                        <li><a href="#">Transparency Report</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <div class="social-links">
+                        <a href="#">Facebook</a>
+                        <a href="#">Instagram</a>
+                        <a href="#">YouTube</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Carpathian Timber Frame Project. Open Source & Community Driven.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
