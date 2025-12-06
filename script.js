@@ -64,12 +64,17 @@ function calculateLoan() {
     const totalAmount = monthlyPayment * numberOfPayments;
     const totalInterest = totalAmount - loanAmount;
     
+    // Helper function to format currency
+    function formatCurrency(amount) {
+        return '€ ' + amount.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+    
     // Update display
-    document.getElementById('monthlyPayment').textContent = '€ ' + monthlyPayment.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    document.getElementById('loanAmount').textContent = '€ ' + loanAmount.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    document.getElementById('downPaymentAmount').textContent = '€ ' + downPaymentAmount.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    document.getElementById('totalInterest').textContent = '€ ' + totalInterest.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    document.getElementById('totalAmount').textContent = '€ ' + totalAmount.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    document.getElementById('monthlyPayment').textContent = formatCurrency(monthlyPayment);
+    document.getElementById('loanAmount').textContent = formatCurrency(loanAmount);
+    document.getElementById('downPaymentAmount').textContent = formatCurrency(downPaymentAmount);
+    document.getElementById('totalInterest').textContent = formatCurrency(totalInterest);
+    document.getElementById('totalAmount').textContent = formatCurrency(totalAmount);
     
     // Update chart
     updateChart(loanAmount, totalInterest, downPaymentAmount);
@@ -156,11 +161,52 @@ function handleSubmit(event) {
     // In a real application, this would send data to a server
     console.log('Form submitted:', { name, email, phone, interest, message });
     
-    // Show success message
-    alert('Thank you for your interest! We will contact you within 24 hours.');
+    // Show success message with better UX
+    showNotification('Thank you for your interest! We will contact you within 24 hours.');
     
     // Reset form
     event.target.reset();
+}
+
+// Show notification function for better UX
+function showNotification(message) {
+    // Create notification element
+    const notification = document.createElement('div');
+    notification.textContent = message;
+    notification.style.cssText = `
+        position: fixed;
+        top: 100px;
+        right: 20px;
+        background: #2c5f2d;
+        color: white;
+        padding: 20px 30px;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        z-index: 10000;
+        animation: slideIn 0.3s ease;
+    `;
+    
+    // Add animation
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes slideIn {
+            from { transform: translateX(400px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes slideOut {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(400px); opacity: 0; }
+        }
+    `;
+    document.head.appendChild(style);
+    
+    document.body.appendChild(notification);
+    
+    // Remove after 5 seconds
+    setTimeout(() => {
+        notification.style.animation = 'slideOut 0.3s ease';
+        setTimeout(() => notification.remove(), 300);
+    }, 5000);
 }
 
 // Smooth scroll for navigation links
@@ -231,7 +277,3 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 250);
     });
 });
-
-// Easter egg: Console message
-console.log('%c🏔️ Welcome to Carpathian Home Financing!', 'font-size: 20px; color: #2c5f2d; font-weight: bold;');
-console.log('%cInterested in our financing solutions? Contact us at info@carpathianfinancing.com', 'font-size: 14px; color: #666;');
